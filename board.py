@@ -17,3 +17,14 @@ class Board(object):
     def _insert(self, player, row, column):
         self._raise_if_cell_not_empty(row, column)
         self.board[row][column] = player
+
+    def _is_winner(self, row, column):
+        for row in self.board:
+            if len(set(row)) == 1:
+                return True
+        for column in self.board:
+            if len(set(column)) == 1:
+                return True
+        main_diagonal = [self.board[i][i] for i in xrange(3)]
+        secondary_diagonal = [self.board[i][2 - i] for i in xrange(3)]
+        return any(len(set(diagonal)) == 1 for diagonal in (main_diagonal, secondary_diagonal))
