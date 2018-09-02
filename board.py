@@ -28,3 +28,15 @@ class Board(object):
         main_diagonal = [self.board[i][i] for i in xrange(3)]
         secondary_diagonal = [self.board[i][2 - i] for i in xrange(3)]
         return any(len(set(diagonal)) == 1 for diagonal in (main_diagonal, secondary_diagonal))
+    def _raise_if_cell_not_in_bounds(self, row, column):
+        try:
+            self.board[row][column]
+        except IndexError:
+            raise NotEmptyCellError(row, column)
+
+
+class OutOfBoundsError(IndexError):
+    def __init__(self, row, column):
+        super(IndexError, self).__init__()
+        self.row = row
+        self.column = column
