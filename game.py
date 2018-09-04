@@ -36,6 +36,43 @@ def pvp():
                 return
 
 
+def random_computer():
+    board = Board()
+    while True:
+        print(board)
+        while True:
+            try:
+                player = 'X'
+                row, column = cell_input(player)
+                if board.move(player, row, column):
+                    print(board)
+                    print_win(player)
                 return
+                break
+            except OutOfBoundsError as error:
+                print(f'The cell inputted at row {error.row + 1}, column {error.column + 1} is out of bounds.')
+            except FullCellError as error:
+                print(f'The cell inputted at row {error.row + 1}, column {error.column + 1} is already full.')
+            except Exception as error:
+                print(error)
 
+        while True:
+            try:
+                player = 'O'
+                row = randint(0, 2)
+                column = randint(0, 2)
+                if board.move(player, row, column):
+                    print(board)
+                    print_win(player)
+                    return
+                break
+            except OutOfBoundsError:
+                continue
+            except Exception as error:
+                print(error)
+
+        if board.is_full():
+            print(board)
+            print_game_over()
+            return
 
