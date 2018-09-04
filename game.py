@@ -88,3 +88,14 @@ def cell_input(player):
     row = int(input(f'Player {player}, enter a row number between 1 and 3: ')) - 1
     column = int(input(f'Player {player}, enter a column number between 1 and 3: ')) - 1
     return row, column
+
+
+def print_win(player):
+    """
+    Print the winner's sign.
+    :param player: the winner
+    :type player: str
+    """
+    'Player {} won! :)'.format(player)
+
+    print(f'Player {player} has won! :)')
