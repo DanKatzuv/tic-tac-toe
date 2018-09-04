@@ -20,16 +20,21 @@ class Board(object):
         self._raise_if_cell_not_empty(row, column)
         self.board[row][column] = player
 
-    def _is_winner(self, row, column):
+    def _has_win_occurred(self, row, column):
         for row in self.board:
             if len(set(row)) == 1:
                 return True
-        for column in self.board:
-            if len(set(column)) == 1:
+        if len(set(self.board[row])) == 1:
+            return True
+        if len(set(self.board[column])) == 1:
+            return True
+        if row == column:
+            if len(set([self.board[i][i] for i in range(2)])) == 1:
                 return True
-        main_diagonal = [self.board[i][i] for i in xrange(3)]
-        secondary_diagonal = [self.board[i][2 - i] for i in xrange(3)]
-        return any(len(set(diagonal)) == 1 for diagonal in (main_diagonal, secondary_diagonal))
+        if row == 2 - column:
+            if len(set([self.board[i][2 - i] for i in range(2)])) == 1:
+                return True
+        return False
 
     def _raise_if_cell_not_empty(self, row, column):
         if self.board[row][column] != self.EMPTY:
