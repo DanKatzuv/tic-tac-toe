@@ -104,3 +104,21 @@ def print_win(player):
 def print_game_over():
     """Print that the board is full and the game ended in a tie."""
     print('Board is full, tie.')
+
+
+def main():
+    """Main function running the game"""
+    mode = int(input('Enter 1 for PvP Mode, 2 for Random Computer Mode, and 3 for AI Mode: '))
+    if mode == 1:
+        pvp()
+        return
+    if mode == 2:
+        random_computer()
+        return
+    if mode == 3:
+        ai()
+        return
+    raise ValueError('Enter a valid mode number')
+
+if __name__ == '__main__':
+    main()
