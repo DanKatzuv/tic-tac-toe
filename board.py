@@ -15,7 +15,7 @@ class Board:
         :return: a string describing the current board
         :rtype: str
         """
-        return ''.join(' '.join(row) + '\n' for row in self.board)
+        return ''.join(' | '.join(row) + '\n' for row in self.board)
 
     def move(self, player, row, column):
         """
