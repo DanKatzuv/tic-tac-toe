@@ -92,7 +92,7 @@ class Board:
         :type column: int
         :raise: OutOfBoundsError
         """
-        if self.board[row][column] != self.EMPTY:
+        if not (0 <= row < 3 and 0 <= column < 3):
             raise OutOfBoundsError(row, column)
 
 
