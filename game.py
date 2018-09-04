@@ -76,3 +76,15 @@ def random_computer():
             print_game_over()
             return
 
+
+def cell_input(player):
+    """
+    Input a column number from player.
+    :param player: player to ask the input for
+    :type player: str
+    :return: column number player inputted
+    :rtype: int
+    """
+    row = int(input(f'Player {player}, enter a row number between 1 and 3: ')) - 1
+    column = int(input(f'Player {player}, enter a column number between 1 and 3: ')) - 1
+    return row, column
