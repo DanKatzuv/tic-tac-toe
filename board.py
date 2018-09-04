@@ -65,12 +65,3 @@ class FullCellError(Exception):
         super().__init__()
         self.row = row
         self.column = column
-
-
-def main():
-    board = Board()
-    print board
-
-
-if __name__ == '__main__':
-    main()
