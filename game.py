@@ -142,6 +142,20 @@ def ai():
                         print(board)
                         print_win(player)
                         return
+
+                # 2) Block: If the opponent has two in a row, the player must play the third themselves to block the
+                # opponent.
+                for row in board.board:
+                    if row.count(other) == 2 and row.count(player) == 0:
+                        column = 0
+                        while True:
+                            try:
+                                board.move(player, row, column)
+                                print(board)
+                                print_win(player)
+                                return
+                            except FullCellError:
+                                column += 1
 def cell_input(player):
     """
     Input a column number from player.
