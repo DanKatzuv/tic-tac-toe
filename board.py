@@ -59,16 +59,23 @@ class Board:
         :return: whether a win has occurred
         :rtype: bool
         """
-        if len(set(self.board[row])) == 1:
+        if len(self.board[row]) == 3 and len(set(self.board[row])) == 1:
             return True
-        if len(set(self.board[column])) == 1:
+
+        column_ = [self.board[row][column] for row in range(3)]
+        if len(column_) == 3 and len(set(column_)) == 1:
             return True
+
         if row == column:
-            if len(set([self.board[i][i] for i in range(2)])) == 1:
+            main_diagonal = [self.board[i][i] for i in range(3)]
+            if len(main_diagonal) == 3 and len(set(main_diagonal)) == 1:
                 return True
+
         if row == 2 - column:
-            if len(set([self.board[i][2 - i] for i in range(2)])) == 1:
+            secondary_diagonal = [self.board[i][2 - i] for i in range(3)]
+            if len(secondary_diagonal) == 3 and len(set(secondary_diagonal)) == 1:
                 return True
+
         return False
 
     def _raise_if_cell_full(self, row, column):
