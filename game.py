@@ -99,3 +99,8 @@ def print_win(player):
     'Player {} won! :)'.format(player)
 
     print(f'Player {player} has won! :)')
+
+
+def print_game_over():
+    """Print that the board is full and the game ended in a tie."""
+    print('Board is full, tie.')
