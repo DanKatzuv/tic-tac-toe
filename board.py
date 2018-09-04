@@ -13,6 +13,8 @@ class Board(object):
     def turn(self, player, row, column):
         self._insert(player, row, column)
         return self._is_winner(row, column)
+    def is_full(self):
+        return all(self.EMPTY not in row for row in self.board)
 
     def _insert(self, player, row, column):
         self._raise_if_cell_not_empty(row, column)
