@@ -156,6 +156,12 @@ def ai():
                                 return
                             except FullCellError:
                                 column += 1
+        if board.is_full():
+            print(board)
+            print_game_over()
+            return
+
+
 def cell_input(player):
     """
     Input a column number from player.
