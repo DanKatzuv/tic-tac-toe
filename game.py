@@ -21,7 +21,7 @@ def pvp():
                 if board.move(player, row, column):
                     print(board)
                     print_win(player)
-                return
+                    return
                 break
             except OutOfBoundsError as error:
                 print(f'The cell inputted at row {error.row + 1}, column {error.column + 1} is out of bounds.')
@@ -47,7 +47,7 @@ def random_computer():
                 if board.move(player, row, column):
                     print(board)
                     print_win(player)
-                return
+                    return
                 break
             except OutOfBoundsError as error:
                 print(f'The cell inputted at row {error.row + 1}, column {error.column + 1} is out of bounds.')
@@ -77,6 +77,26 @@ def random_computer():
             return
 
 
+def ai():
+    raise NotImplementedError
+    board = Board()
+    while True:
+        print(board)
+        while True:
+            try:
+                player = 'X'
+                row, column = cell_input(player)
+                if board.move(player, row, column):
+                    print(board)
+                    print_win(player)
+                    return
+                break
+            except OutOfBoundsError as error:
+                print(f'The cell inputted at row {error.row + 1}, column {error.column + 1} is out of bounds.')
+            except FullCellError as error:
+                print(f'The cell inputted at row {error.row + 1}, column {error.column + 1} is already full.')
+            except Exception as error:
+                print(error)
 def cell_input(player):
     """
     Input a column number from player.
