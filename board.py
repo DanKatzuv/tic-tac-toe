@@ -5,7 +5,9 @@ class Board(object):
         # self.board = [3 * [' ']]
         self.board = [['X', 'O', 'X'],
                       ['X', 'O', 'X'],
-                      ['X', 'O', 'X']]
+        self.board = [[' ', ' ', ' '],
+                      [' ', ' ', ' '],
+                      [' ', ' ', ' ']]
 
     def __str__(self):
         return ''.join(' '.join(row) + '\n' for row in self.board)
