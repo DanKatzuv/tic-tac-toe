@@ -36,27 +36,31 @@ class Board(object):
                 return True
         return False
 
-    def _raise_if_cell_not_empty(self, row, column):
+    def _raise_if_cell_full(self, row, column):
         if self.board[row][column] != self.EMPTY:
-            raise NotEmptyCellError(row, column)
+            raise FullCellError(row, column)
 
     def _raise_if_cell_not_in_bounds(self, row, column):
         try:
             self.board[row][column]
         except IndexError:
             raise NotEmptyCellError(row, column)
+        if self.board[row][column] != self.EMPTY:
+            raise OutOfBoundsError(row, column)
 
 
 class OutOfBoundsError(IndexError):
     def __init__(self, row, column):
         super(IndexError, self).__init__()
+        super().__init__()
         self.row = row
         self.column = column
 
 
-class NotEmptyCellError(Exception):
+class FullCellError(Exception):
     def __init__(self, row, column):
         super(NotEmptyCellError, self).__init__()
+        super().__init__()
         self.row = row
         self.column = column
 
