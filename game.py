@@ -80,6 +80,26 @@ def random_computer():
 def ai():
     raise NotImplementedError
     board = Board()
+
+    # first move
+    while True:
+        try:
+            player = 'X'
+            row, column = cell_input(player)
+            board.move(player, row, column)
+            print(board)
+            break
+        except OutOfBoundsError as error:
+            print(f'The cell inputted at row {error.row + 1}, column {error.column + 1} is out of bounds.')
+        except Exception as error:
+            print(error)
+
+    if row == 2 and column == 2:
+        board.move('O', 0, 0)
+
+    if any((row == 0, row == 2 and column == 0, row == 1 and column == 2)):
+        board.move('O', 1, 1)
+
     while True:
         print(board)
         while True:
