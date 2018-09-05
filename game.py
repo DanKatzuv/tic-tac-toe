@@ -30,10 +30,10 @@ def pvp():
             except Exception as error:
                 print(error)
 
-            if board.is_full():
-                print(board)
-                print_game_over()
-                return
+        if board.is_full():
+            print(board)
+            print_game_over()
+            return
 
 
 def random_computer():
