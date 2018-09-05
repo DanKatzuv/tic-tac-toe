@@ -218,6 +218,14 @@ def print_game_over():
     print('Board is full, tie.')
 
 
+def fill_last_empty(board, sequence, player, other, row):
+    if sequence.count(player) == 2 and sequence.count(other) == 0:
+        if board.move(player, row, sequence.index(board.EMPTY)):
+            print(board)
+            print_win(player)
+            return True
+
+
 def main():
     """Main function running the game"""
     mode = int(input('Enter 1 for PvP Mode, 2 for Random Computer Mode, and 3 for AI Mode: '))
