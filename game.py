@@ -1,7 +1,33 @@
+from abc import ABC
 from itertools import cycle
 from random import randint
 
 from board import Board, FullCellError, OutOfBoundsError
+
+
+class Player(ABC):
+    def __init__(self, mark):
+        self.mark = mark
+        self.board = None
+
+    def read_board(self):
+        pass
+
+    @property
+    def choice(self):
+        pass
+
+
+class Human(Player):
+    pass
+
+
+class RandomComputer(Player):
+    pass
+
+
+class AI(Player):
+    pass
 
 
 def pvp():
