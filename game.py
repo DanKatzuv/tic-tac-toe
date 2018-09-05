@@ -120,48 +120,45 @@ def ai():
 
         # The strategy is taken from https://en.wikipedia.org/wiki/Tic-tac-toe#Strategy
         while True:
-                player = 'O'
-                other = 'X'
+            player = 'O'
+            other = 'X'
 
-                # 1) Win: If the player has two in a row, they can place a third to get three in a row.
-                # traverse the main diagonal
-                main_diagonal = [board.board[i][i] for i in range(3)]
-                if main_diagonal.count(player) == 2 and main_diagonal.count(other) == 0:
-                    board.move(player, row, main_diagonal.index(board.EMPTY))
-                    print(board)
-                    print_win(player)
-                    return
+            # 1) Win: If the player has two in a row, they can place a third to get three in a row.
+            # traverse the main diagonal
+            main_diagonal = [board.board[i][i] for i in range(3)]
+            if fill_last_empty(board, main_diagonal, player, other, row):
+                return
 
-                # traverse the secondary diagonal
-                secondary_diagonal = [board.board[i][2 - i] for i in range(3)]
-                if secondary_diagonal.count(player) == 2 - 1 and secondary_diagonal.count(other) == 0:
-                    board.move(player, row, main_diagonal.index(board.EMPTY))
-                    print(board)
-                    print_win(player)
-                    return
+            # traverse the secondary diagonal
+            secondary_diagonal = [board.board[i][2 - i] for i in range(3)]
+            if fill_last_empty(board, secondary_diagonal, player, other, row):
+                return
 
-                for row in board.board:
-                    # traverse the row
-                    if row.count(player) == 2 - 1 and row.count(other) == 0:
-                            board.move(player, row, row.index(board.EMPTY))
-                            print(board)
-                            print_win(player)
-                            return
-
-                    # traverse the column
-                    column = [board.board[row] for row in range(3)]
-                    if column.count(player) == 2 - 1 and column.count(other) == 0:
-                        board.move(player, row, column.index(board.EMPTY))
+            for row in board.board:
+                # traverse the row
+                if row.count(player) == 2 and row.count(other) == 0:
+                    if board.move(player, row, row.index(board.EMPTY)):
                         print(board)
                         print_win(player)
                         return
 
-                for column in board.board:
-                    if row.count(player) == 2 and row.count(other) == 0:
-                        board.move(player, row, row.find(board.EMPTY))
+                # traverse the column
+                column = [board.board[row] for row in range(3)]
+                if column.count(player) == 2 and column.count(other) == 0:
+                    if board.move(player, row, column.index(board.EMPTY)):
                         print(board)
                         print_win(player)
                         return
+
+            # 2) Block: If the opponent has two in a row, the player must play the third themselves to block the
+            # opponent.
+            # traverse the main diagonal
+            main_diagonal = [board.board[i][i] for i in range(3)]
+            if main_diagonal.count(other) == 2 and main_diagonal.count(player) == 0:
+                if board.move(player, row, main_diagonal.index(board.EMPTY)):
+                    print(board)
+                    print_win(player)
+                    return
 
                 # 2) Block: If the opponent has two in a row, the player must play the third themselves to block the
                 # opponent.
