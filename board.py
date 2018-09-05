@@ -3,9 +3,7 @@ class Board:
     EMPTY = ' '
 
     def __init__(self):
-        """
-        Instantiate a Tic Tac Toe board.
-        """
+        """Instantiate a Tic Tac Toe board."""
         self.board = [[' ', ' ', ' '],
                       [' ', ' ', ' '],
                       [' ', ' ', ' ']]
