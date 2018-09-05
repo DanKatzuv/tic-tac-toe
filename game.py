@@ -78,7 +78,6 @@ def random_computer():
 
 
 def ai():
-    raise NotImplementedError
     board = Board()
 
     # first move
@@ -160,19 +159,30 @@ def ai():
                     print_win(player)
                     return
 
-                # 2) Block: If the opponent has two in a row, the player must play the third themselves to block the
-                # opponent.
-                for row in board.board:
-                    if row.count(other) == 2 and row.count(player) == 0:
-                        column = 0
-                        while True:
-                            try:
-                                board.move(player, row, column)
-                                print(board)
-                                print_win(player)
-                                return
-                            except FullCellError:
-                                column += 1
+            # traverse the secondary diagonal
+            secondary_diagonal = [board.board[i][2 - i] for i in range(3)]
+            if secondary_diagonal.count(other) == 2 and secondary_diagonal.count(player) == 0:
+                if board.move(player, row, main_diagonal.index(board.EMPTY)):
+                    print(board)
+                    print_win(player)
+                    return
+
+            for row in board.board:
+                # traverse the row
+                if row.count(other) == 2 and row.count(player) == 0:
+                    if board.move(player, row, row.index(board.EMPTY)):
+                        print(board)
+                        print_win(player)
+                        return
+
+                # traverse the column
+                column = [board.board[row] for row in range(3)]
+                if column.count(other) == 2 and column.count(player) == 0:
+                    board.move(player, row, column.index(board.EMPTY))
+                    print(board)
+                    print_win(player)
+                    return
+
         if board.is_full():
             print(board)
             print_game_over()
@@ -221,6 +231,7 @@ def main():
         ai()
         return
     raise ValueError('Enter a valid mode number')
+
 
 if __name__ == '__main__':
     main()
