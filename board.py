@@ -4,16 +4,16 @@ class Board:
 
     def __init__(self):
         """Instantiate a Tic Tac Toe board."""
-        self.board = [[' ', ' ', ' '],
-                      [' ', ' ', ' '],
-                      [' ', ' ', ' ']]
+        self._board = [[' ', ' ', ' '],
+                       [' ', ' ', ' '],
+                       [' ', ' ', ' ']]
 
     def __str__(self):
         """
         :return: a string describing the current board
         :rtype: str
         """
-        return ''.join(' | '.join(row) + '\n' for row in self.board)
+        return ''.join(' | '.join(row) + '\n' for row in self._board)
 
     def move(self, player, row, column):
         """
@@ -31,7 +31,7 @@ class Board:
         return self._has_win_occurred(row, column)
 
     def is_full(self):
-        return all(self.EMPTY not in row for row in self.board)
+        return all(self.EMPTY not in row for row in self._board)
 
     def _insert(self, player, row, column):
         """
@@ -45,7 +45,7 @@ class Board:
         """
         self._raise_if_cell_full(row, column)
         self._raise_if_cell_not_in_bounds(row, column)
-        self.board[row][column] = player
+        self._board[row][column] = player
 
     def _has_win_occurred(self, row, column):
         """
@@ -57,20 +57,20 @@ class Board:
         :return: whether a win has occurred
         :rtype: bool
         """
-        if len(self.board[row]) == 3 and len(set(self.board[row])) == 1:
+        if len(self._board[row]) == 3 and len(set(self._board[row])) == 1:
             return True
 
-        column_ = [self.board[row][column] for row in range(3)]
+        column_ = [self._board[row][column] for row in range(3)]
         if len(column_) == 3 and len(set(column_)) == 1:
             return True
 
         if row == column:
-            main_diagonal = [self.board[i][i] for i in range(3)]
+            main_diagonal = [self._board[i][i] for i in range(3)]
             if len(main_diagonal) == 3 and len(set(main_diagonal)) == 1:
                 return True
 
         if row == 2 - column:
-            secondary_diagonal = [self.board[i][2 - i] for i in range(3)]
+            secondary_diagonal = [self._board[i][2 - i] for i in range(3)]
             if len(secondary_diagonal) == 3 and len(set(secondary_diagonal)) == 1:
                 return True
 
@@ -85,7 +85,7 @@ class Board:
         :type column: int
         :raise: FullCellError
         """
-        if self.board[row][column] != self.EMPTY:
+        if self._board[row][column] != self.EMPTY:
             raise FullCellError(row, column)
 
     def _raise_if_cell_not_in_bounds(self, row, column):
@@ -133,7 +133,7 @@ class FullCellError(Exception):
 
 if __name__ == '__main__':
     board = Board()
-    board.board = [[' ', ' ', 'X'],
-                   [' ', 'X', ' '],
-                   ['X', ' ', ' ']]
+    board._board = [[' ', ' ', 'X'],
+                    [' ', 'X', ' '],
+                    ['X', ' ', ' ']]
     print(board._has_win_occurred(1, 1))
