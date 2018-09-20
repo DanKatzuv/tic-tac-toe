@@ -129,11 +129,3 @@ class FullCellError(Exception):
         super().__init__()
         self.row = row
         self.column = column
-
-
-if __name__ == '__main__':
-    board = Board()
-    board._board = [[' ', ' ', 'X'],
-                    [' ', 'X', ' '],
-                    ['X', ' ', ' ']]
-    print(board._has_win_occurred(1, 1))
