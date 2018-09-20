@@ -31,7 +31,26 @@ class Board:
         return self._has_win_occurred(row, column)
 
     def is_full(self):
+        """
+        Return whether the board is full.
+
+        :return: whether the board is full
+        :rtype: bool
+        """
         return all(self.EMPTY not in row for row in self._board)
+
+    def is_cell_empty(self, row, column):
+        """
+        Return whether a certain cell is empty.
+
+        :param row: row number of the checked cell
+        :type row: int
+        :param column: column number of the checked cell
+        :type column: int
+        :return: whether a certain cell is empty
+        :rtype: bool
+        """
+        return self._board[row][column] == self.EMPTY
 
     def _insert(self, player, row, column):
         """
