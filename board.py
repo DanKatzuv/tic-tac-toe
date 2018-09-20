@@ -47,9 +47,14 @@ class Board:
         self._raise_if_cell_not_in_bounds(row, column)
         self._board[row][column] = player
 
-    def _has_win_occurred(self, row, column):
+    @classmethod
+    def _is_win_in_sequence(cls, sequence):
+        return cls.EMPTY not in sequence and len(set(sequence)) == 1
+
+    def _has_win_occurred(self, row_number, column_number):
         """
         Return whether a win has occurred.
+
         :param row: row the last mark has been inserted into
         :type row: int
         :param column: column the last mark has been inserted into
@@ -57,24 +62,17 @@ class Board:
         :return: whether a win has occurred
         :rtype: bool
         """
-        if len(self._board[row]) == 3 and len(set(self._board[row])) == 1:
-            return True
+        sequences = list()
+        sequences.append(self._board[row_number])  # row
+        sequences.append([i[column_number] for i in self._board])  # column
+        if row_number == column_number:
+            sequences.append([self._board[i][i]
+                              for i in range(3)])  # main diagonal
+        if row_number == 2 - column_number:
+            sequences.append([self._board[i][2 - i]
+                              for i in range(3)])  # secondary diagonal
 
-        column_ = [self._board[row][column] for row in range(3)]
-        if len(column_) == 3 and len(set(column_)) == 1:
-            return True
-
-        if row == column:
-            main_diagonal = [self._board[i][i] for i in range(3)]
-            if len(main_diagonal) == 3 and len(set(main_diagonal)) == 1:
-                return True
-
-        if row == 2 - column:
-            secondary_diagonal = [self._board[i][2 - i] for i in range(3)]
-            if len(secondary_diagonal) == 3 and len(set(secondary_diagonal)) == 1:
-                return True
-
-        return False
+        return any(self._is_win_in_sequence(sequence) for sequence in sequences)
 
     def _raise_if_cell_full(self, row, column):
         """
