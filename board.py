@@ -15,6 +15,16 @@ class Board:
         """
         return ''.join(' | '.join(row) + '\n' for row in self._board)
 
+    @property
+    def board(self):
+        """
+        Return a read-only property of the board.
+
+        :return: the current board
+        :rtype: list
+        """
+        return self.board
+
     def move(self, player, row, column):
         """
         Make one move in the game and return whether a win occurred.
