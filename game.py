@@ -2,6 +2,45 @@ from itertools import cycle
 from random import randint
 
 from board import Board, FullCellError, OutOfBoundsError
+from player import Player
+
+
+class Game:
+    """Class that represents a Tic Tc Toe game."""
+
+    def __init__(self, player_x: Player, player_y: Player):
+        """Instantiate a Tic Tac Toe game."""
+        self.board = Board()
+        self.player_x = player_x()
+        self.player_y = player_y()
+
+    def play(self):
+        """Main function running the game."""
+        for player in cycle((self.player_x, self.player_y)):
+            row, column = player.turn()
+            if self.board.move(player.mark, row, column):
+                self.print_win(player)
+                return
+
+            if self.board.is_full():
+                print(self.board)
+                self.print_game_over()
+                return
+
+    def print_win(self, winner_mark):
+        """
+        Print the winner's mark.
+
+        :param player: the winner
+        :type player: str
+        """
+        print(self.board)
+        print(f'Player {winner_mark} has won! :)')
+
+    def print_game_over(self):
+        """Print that the board is full and the game ended in a tie."""
+        print(self.board)
+        print('Board is full, tie.')
 
 
 def pvp():
