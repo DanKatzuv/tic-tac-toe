@@ -65,6 +65,7 @@ class Board:
     def _insert(self, player, row, column):
         """
         Insert a mark of player into the board.
+
         :param player: current player
         :type player: str
         :param row: row the last mark has been inserted into

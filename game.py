@@ -20,7 +20,7 @@ class Game:
         self.player_y = player_y()
 
     def play(self):
-        """Main function running the game."""
+        """Main method running the game."""
         for player in cycle((self.player_x, self.player_y)):
             row, column = player.turn()
             if self.board.move(player.mark, row, column):
