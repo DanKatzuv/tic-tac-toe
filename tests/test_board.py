@@ -2,11 +2,11 @@ from pytest import mark
 from board import Board
 
 
-@mark.parametrize('player', ('X', 'O'))
-def test_row(player):
+@mark.parametrize('mark', ('X', 'O'))
+def test_row(mark):
     board = Board()
     board._board = [[' ', ' ', ' '],
-                    [player, player, player],
+                    [mark, mark, mark],
                     [' ', ' ', ' ']]
 
     for column in range(3):
@@ -16,12 +16,12 @@ def test_row(player):
     assert not board._has_win_occurred(2, 2)
 
 
-@mark.parametrize('player', ('X', 'O'))
-def test_column(player):
+@mark.parametrize('mark', ('X', 'O'))
+def test_column(mark):
     board = Board()
-    board._board = [[' ', player, ' '],
-                    [' ', player, ' '],
-                    [' ', player, ' ']]
+    board._board = [[' ', mark, ' '],
+                    [' ', mark, ' '],
+                    [' ', mark, ' ']]
 
     for row in range(3):
         assert board._has_win_occurred(row, 1)
@@ -30,12 +30,12 @@ def test_column(player):
     assert not board._has_win_occurred(2, 2)
 
 
-@mark.parametrize('player', ('X', 'O'))
-def test_main_diagonal(player):
+@mark.parametrize('mark', ('X', 'O'))
+def test_main_diagonal(mark):
     board = Board()
-    board._board = [[player, ' ', ' '],
-                    [' ', player, ' '],
-                    [' ', ' ', player]]
+    board._board = [[mark, ' ', ' '],
+                    [' ', mark, ' '],
+                    [' ', ' ', mark]]
 
     for row in range(3):
         assert board._has_win_occurred(row, row)
@@ -44,12 +44,12 @@ def test_main_diagonal(player):
     assert not board._has_win_occurred(2, 1)
 
 
-@mark.parametrize('player', ('X', 'O'))
-def test_secondary_diagonal(player):
+@mark.parametrize('mark', ('X', 'O'))
+def test_secondary_diagonal(mark):
     board = Board()
-    board._board = [[' ', ' ', player],
-                    [' ', player, ' '],
-                    [player, ' ', ' ']]
+    board._board = [[' ', ' ', mark],
+                    [' ', mark, ' '],
+                    [mark, ' ', ' ']]
 
     for row in range(3):
         assert board._has_win_occurred(row, 2 - row)
