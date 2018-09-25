@@ -40,7 +40,7 @@ class Game:
         :type player: str
         """
         print(self.board)
-        print(f'Player {winner_mark} has won! :)')
+        print(f'Player {winner_mark} has won! :-)')
 
     def print_game_over(self):
         """Print that the board is full and the game ended in a tie."""
