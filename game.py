@@ -2,14 +2,19 @@ from itertools import cycle
 from random import randint
 
 from board import Board
-from player import Player
 
 
 class Game:
     """Class that represents a Tic Tc Toe game."""
 
-    def __init__(self, player_x: Player, player_y: Player):
-        """Instantiate a Tic Tac Toe game."""
+    def __init__(self, player_x, player_y):
+        """Instantiate a Tic Tac Toe game.
+
+        :param x: type of the first player (player x)
+        :type x: Player
+        :param y: type of the second player (player y)
+        :type y: Player
+        """
         self.board = Board()
         self.player_x = player_x()
         self.player_y = player_y()
