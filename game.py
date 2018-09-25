@@ -1,7 +1,7 @@
 from itertools import cycle
 from random import randint
 
-from board import Board, FullCellError, OutOfBoundsError
+from board import Board
 from player import Player
 
 

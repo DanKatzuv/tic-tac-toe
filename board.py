@@ -72,8 +72,6 @@ class Board:
         :param column: column the last mark has been inserted into
         :type column: int
         """
-        self._raise_if_cell_full(row, column)
-        self._raise_if_cell_not_in_bounds(row, column)
         self._board[row][column] = player
 
     @classmethod
@@ -102,57 +100,3 @@ class Board:
                               for i in range(3)])  # secondary diagonal
 
         return any(self._is_win_in_sequence(sequence) for sequence in sequences)
-
-    def _raise_if_cell_full(self, row, column):
-        """
-        Raise a FullCellError if the inputted cell is already full.
-        :param row: row of cell to be checked
-        :type row: int
-        :param column: column of cell to be checked
-        :type column: int
-        :raise: FullCellError
-        """
-        if self._board[row][column] != self.EMPTY:
-            raise FullCellError(row, column)
-
-    def _raise_if_cell_not_in_bounds(self, row, column):
-        """
-        Raise an OutOfBoundsError if the inputted cell is already full.
-        :param row: row of cell to be checked
-        :type row: int
-        :param column: column of cell to be checked
-        :type column: int
-        :raise: OutOfBoundsError
-        """
-        if not (0 <= row < 3 and 0 <= column < 3):
-            raise OutOfBoundsError(row, column)
-
-
-class OutOfBoundsError(IndexError):
-    """Exception for handling number of rows or columns inputted for cells that are out of board boundaries."""
-
-    def __init__(self, row, column):
-        """
-        Instantiate a ColumnOutOfBoundsError exception.
-        :param row: row inputted for checking if a cell is out of board boundaries
-        :type row: int
-        :param column: column inputted for checking if a cell is out of board boundaries
-        :type column: int
-        """
-        super().__init__()
-        self.row = row
-        self.column = column
-
-
-class FullCellError(Exception):
-    def __init__(self, row, column):
-        """
-        Instantiate a FullColumnError exception.
-        :param row: row inputted for checking if it is already full
-        :type row: int
-        :param column: column inputted for checking if it is already full
-        :type column: int
-        """
-        super().__init__()
-        self.row = row
-        self.column = column
