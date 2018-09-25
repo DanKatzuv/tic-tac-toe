@@ -10,7 +10,7 @@ def main():
         game.play()
         if input("Would you like to play again? Enter 'Y' if yes, anything else if not: ").upper() != 'Y':
             print('Thanks for playing! Hope you enjoyed, see you next time :-)')
-            return
+            exit()
 
 
 def player_type_chooser(is_first):
