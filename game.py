@@ -169,23 +169,3 @@ class Game:
 #             print(board)
 #             print_win(player)
 #             return True
-
-
-def main():
-    """Main function running the game"""
-    mode = int(
-        input('Enter 1 for PvP Mode, 2 for Random Computer Mode, and 3 for AI Mode: '))
-    if mode == 1:
-        pvp()
-        return
-    if mode == 2:
-        random_computer()
-        return
-    if mode == 3:
-        ai()
-        return
-    raise ValueError('Enter a valid mode number')
-
-
-if __name__ == '__main__':
-    main()
