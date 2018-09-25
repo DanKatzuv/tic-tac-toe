@@ -1,3 +1,4 @@
+from itertools import product
 from random import choice
 
 from board import Board
@@ -16,11 +17,5 @@ class RandomComputer(Player):
         :return: choice of player
         :rtype: tuple
         """
-
-        vacant_cells = list()
-        for row in range(3):
-            for column in range(3):
-                if board.is_cell_empty(row, column):
-                    vacant_cells.append((row, column))
-
-        return choice(vacant_cells)
+        return choice([(row, column) for row, column in product(
+            range(3), range(3)) if board.is_cell_empty(row, column)])
