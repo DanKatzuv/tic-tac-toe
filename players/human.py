@@ -13,17 +13,6 @@ class Human(Player):
         :return: choice of player
         :rtype: tuple
         """
-        return self.cell_input(board)
-
-    def cell_input(self, board):
-        """
-        Input a column number from player.
-
-        : param player: player to ask the input for
-        : type player: str
-        : return: column number player inputted
-        : rtype: tuple
-        """
         while True:
             print(board)
             row = int(input(f'Player {self.mark}, enter a row number between 1 and 3: ')) - 1
@@ -33,7 +22,6 @@ class Human(Player):
                 print(f'The cell at row {row}, column {column} is not empty')
                 continue
             if not (0 <= row < 3 or 0 <= column < 3):
-                print(
-                    f'The cell at row {row}, column {column} is out of bounds')
+                print(f'The cell at row {row}, column {column} is out of bounds')
                 continue
             return row, column
