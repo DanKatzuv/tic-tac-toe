@@ -7,21 +7,21 @@ from board import Board
 class Game:
     """Class that represents a Tic Tc Toe game."""
 
-    def __init__(self, player_x, player_y):
+    def __init__(self, player_x_type, player_o_type):
         """Instantiate a Tic Tac Toe game.
 
-        :param x: type of the first player (player x)
-        :type x: Player
-        :param y: type of the second player (player y)
-        :type y: Player
+        :param player_x_type: type of the first player (player x)
+        :type player_x_type: Player
+        :param player_o_type: type of the second player (player o)
+        :type player_o_type: Player
         """
         self.board = Board()
-        self.player_x = player_x()
-        self.player_y = player_y()
+        self.player_x = player_x_type()
+        self.player_o = player_o_type()
 
     def play(self):
         """Main method running the game."""
-        for player in cycle((self.player_x, self.player_y)):
+        for player in cycle((self.player_x, self.player_o)):
             row, column = player.turn()
             if self.board.move(player.mark, row, column):
                 self.print_win(player)
