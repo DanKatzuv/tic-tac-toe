@@ -5,12 +5,12 @@ from players import (AI, Human, RandomComputer)
 def main():
     """Main function running the game."""
     while True:
-        print('Welcome to the Tic Tac Toe game!\n')
+        print('Welcome to the tic-tac-toe game!\n')
         game = Game(player_type_chooser(True), player_type_chooser(False))
         game.play()
         if input("Would you like to play again? Enter 'Y' if yes, anything else if not: ").upper() != 'Y':
             print('Thanks for playing! Hope you enjoyed, see you next time :-)')
-            exit()
+            return
 
 
 def player_type_chooser(is_first):

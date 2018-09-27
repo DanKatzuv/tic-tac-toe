@@ -1,9 +1,9 @@
 class Board:
-    """Class that represents a Tic Tac Toe board."""
+    """Class that represents a tic-tac-toe board."""
     EMPTY = ' '
 
     def __init__(self):
-        """Instantiate a Tic Tac Toe board."""
+        """Instantiate a tic-tac-toe board."""
         self._board = [[' ', ' ', ' '],
                        [' ', ' ', ' '],
                        [' ', ' ', ' ']]

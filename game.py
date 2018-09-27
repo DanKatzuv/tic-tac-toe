@@ -5,12 +5,12 @@ from board import Board
 
 
 class Game:
-    """Class that represents a Tic Tc Toe game."""
+    """Class that represents a tic-tac-toe game."""
     FIRST_PLAYER_MARK = 'X'
     SECOND_PLAYER_MARK = 'O'
 
     def __init__(self, player_x_type, player_o_type):
-        """Instantiate a Tic Tac Toe game.
+        """Instantiate a tic-tac-toe game.
 
         :param player_x_type: type of the first player (player x)
         :type player_x_type: Player
