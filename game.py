@@ -6,6 +6,8 @@ from board import Board
 
 class Game:
     """Class that represents a Tic Tc Toe game."""
+    FIRST_PLAYER_MARK = 'X'
+    SECOND_PLAYER_MARK = 'O'
 
     def __init__(self, player_x_type, player_o_type):
         """Instantiate a Tic Tac Toe game.
@@ -16,8 +18,8 @@ class Game:
         :type player_o_type: Player
         """
         self.board = Board()
-        self.player_x = player_x_type()
-        self.player_o = player_o_type()
+        self.player_x = player_x_type(self.FIRST_PLAYER_MARK)
+        self.player_o = player_o_type(self.SECOND_PLAYER_MARK)
 
     def play(self):
         """Main method running the game."""
