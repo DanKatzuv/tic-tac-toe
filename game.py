@@ -22,7 +22,7 @@ class Game:
     def play(self):
         """Main method running the game."""
         for player in cycle((self.player_x, self.player_o)):
-            row, column = player.turn()
+            row, column = player.turn(self.board)
             if self.board.move(player.mark, row, column):
                 self.print_win(player)
                 return
