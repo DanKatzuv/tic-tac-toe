@@ -24,7 +24,7 @@ def player_type_chooser(is_first):
     """
     while True:
         player_x = input(f"""Enter the type of the {'first' if is_first else 'second'} player (player {'X' if is_first else 'O'}):
-            '1 for Human, 2 for RandomComputer or 3 for AI: """)
+1 for Human, 2 for RandomComputer or 3 for AI: """)
         if player_x == '1':
             return Human
         if player_x == '2':
