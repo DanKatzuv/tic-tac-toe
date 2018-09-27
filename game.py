@@ -26,7 +26,7 @@ class Game:
         for player in cycle((self.player_x, self.player_o)):
             row, column = player.turn(self.board)
             if self.board.move(player.mark, row, column):
-                self.print_win(player)
+                self.print_win(player.mark)
                 return
 
             if self.board.is_full():
