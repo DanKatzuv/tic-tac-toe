@@ -23,7 +23,7 @@ class Board:
         :return: the current board
         :rtype: list
         """
-        return self.board
+        return self._board
 
     def move(self, player, row, column):
         """
