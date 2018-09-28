@@ -9,7 +9,7 @@ class Human(Player):
         Make a turn.
 
         :param board: the current game's board
-        :type board: Board
+        :type board: BoardRepresentation
         :return: choice of player
         :rtype: tuple
         """
@@ -31,7 +31,7 @@ class Human(Player):
         :param name: the dimension (row or column) the number from the user is desired of
         :type name: str
         :param board: the current board
-        :type board: Board
+        :type board: BoardRepresentation
         :return: the user's choice
         :rtype: int
         """

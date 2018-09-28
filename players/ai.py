@@ -9,7 +9,7 @@ class AI(Player):
         Make a turn.
 
         :param board: the current game's board
-        :type board: Board
+        :type board: BoardRepresentation
         :return: choice of player
         :rtype: tuple
         """

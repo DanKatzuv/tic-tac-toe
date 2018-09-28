@@ -1,5 +1,7 @@
 from itertools import product
 
+from board_representation import BoardRepresentation
+
 
 class Board:
     """Class that represents a tic-tac-toe board."""
@@ -27,6 +29,16 @@ class Board:
         :rtype: list
         """
         return self._board
+
+    def representation(self):
+        """
+        Return representation of the board for a player.
+
+        :return: represantion of the current board
+        :rtype: BoardRepresentaion
+        """
+
+        return BoardRepresentation(self)
 
     def move(self, player, row, column):
         """

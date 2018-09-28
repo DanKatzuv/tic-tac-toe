@@ -36,8 +36,9 @@ class Game:
         :return: whether the game has ended
         :rtype: bool
         """
-        row, column = player.turn(self.board)
+        row, column = player.turn(self.board.representation())
         if self.board.move(player.mark, row, column):
+            print(self.board)
             print(f'Player {player.mark} has won! :-)')
             return True
 
