@@ -1,3 +1,6 @@
+from itertools import product
+
+
 class Board:
     """Class that represents a tic-tac-toe board."""
     EMPTY = ' '
@@ -47,7 +50,7 @@ class Board:
         :return: whether the board is full
         :rtype: bool
         """
-        return all(self.EMPTY not in row for row in self._board)
+        return all(not self.is_cell_empty(row, column) for row, column in product(range(3), range(3)))
 
     def is_cell_empty(self, row, column):
         """
