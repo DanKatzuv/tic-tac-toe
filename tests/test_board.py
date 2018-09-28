@@ -56,3 +56,11 @@ def test_secondary_diagonal(mark):
     assert not board._has_win_occurred(0, 0)
     assert not board._has_win_occurred(2, 2)
     assert not board._has_win_occurred(1, 0)
+
+
+def test_is_board_full():
+    board = Board()
+    board._board = [['X', 'O', 'X'],
+                    ['O', 'X', 'O'],
+                    ['X', 'O', 'X']]
+    assert board.is_full()
