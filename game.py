@@ -24,30 +24,29 @@ class Game:
     def play(self):
         """Main method running the game."""
         for player in cycle((self.player_x, self.player_o)):
-            row, column = player.turn(self.board)
-            if self.board.move(player.mark, row, column):
-                self.print_win(player.mark)
+            if self._turn(player):
                 return
 
-            if self.board.is_full():
-                print(self.board)
-                self.print_game_over()
-                return
-
-    def print_win(self, winner_mark):
+    def _turn(self, player):
         """
-        Print the winner's mark.
+        Method running every turn and returns whether the game has ended.
 
-        :param player: the winner
-        :type player: str
+        :param player: the current player
+        :type player: Player
+        :return: whether the game has ended
+        :rtype: bool
         """
-        print(self.board)
-        print(f'Player {winner_mark} has won! :-)')
+        row, column = player.turn(self.board)
+        if self.board.move(player.mark, row, column):
+            print(f'Player {player.mark} has won! :-)')
+            return True
 
-    def print_game_over(self):
-        """Print that the board is full and the game ended in a tie."""
-        print(self.board)
-        print('Board is full, tie.')
+        if self.board.is_full():
+            print(self.board)
+            print('Board is full, tie.')
+            return True
+
+        return False
 
 
 # def ai():
