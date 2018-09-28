@@ -1,7 +1,6 @@
 from itertools import product
 from random import choice
 
-from board import Board
 from .player import Player
 
 

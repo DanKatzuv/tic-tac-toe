@@ -1,6 +1,6 @@
 from itertools import product
 
-from board_representation import BoardRepresentation
+from .board_representation import BoardRepresentation
 
 
 class Board:

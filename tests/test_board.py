@@ -1,5 +1,5 @@
 from pytest import mark
-from board import Board
+from board.board import Board
 
 
 @mark.parametrize('mark', ('X', 'O'))
