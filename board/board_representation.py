@@ -36,3 +36,6 @@ class BoardRepresentation:
         :rtype: bool
         """
         return self.board[row][column] == board.Board.EMPTY
+
+    def __getitem__(self, row):
+        return self.board[row]
