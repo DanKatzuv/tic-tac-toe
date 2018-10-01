@@ -90,3 +90,15 @@ class AI(Player):
         sequences.append([board[i][2 - i]
                           for i in range(3)])  # secondary_diagonal
         return sequences
+
+    @staticmethod
+    def _number_of_empty_cells(board):
+        """
+        Return the number of the empty cells in the board.
+
+        :param board: current board
+        :type board: BoardRepresentation
+        :return: number of empty cells in board.
+        :rtype: int
+        """
+        return sum(1 for row, column in product(range(3), range(3)) if board[row][column] == Board.EMPTY)
