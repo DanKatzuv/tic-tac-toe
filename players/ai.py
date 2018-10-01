@@ -15,7 +15,10 @@ class AI(Player):
         :return: choice of player
         :rtype: tuple
         """
-        raise NotImplementedError
+        for move in self.moves:
+            result = move(self)
+            if result:
+                return result
 
     def _win(self):
         raise NotImplementedError
@@ -43,3 +46,5 @@ class AI(Player):
 
     def _first_turn(self):
         raise NotImplementedError
+    moves = (_first_turn, _second_turn, _win, _block, _fork, _block_opponent_fork,
+             _center, _opposite_corner, _empty_corner, _empty_side)
