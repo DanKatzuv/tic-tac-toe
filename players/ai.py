@@ -16,8 +16,8 @@ class AI(Player):
 
         The strategy is taken from here: https://en.wikipedia.org/wiki/Tic-tac-toe#Strategy.
         Every turn this method runs on the list of available moves. The player should always pick the first possible
-        option. So for example, the player should always try to win (duh), but if this is not possible, and the opponent
-        can win in the next turn, player should block, and so on.
+        option. So for example, the player should always try to win (duh 😜), but if this is not possible, and the
+        opponent can win in the next turn, player should block, and so on.
 
         Every option is represented as a method. If an option is possible, its corresponding method will return the row
         and column of the player's choice. If an option is not possible, its corresponding method will not return
