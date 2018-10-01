@@ -1,3 +1,4 @@
+from random import choice
 from board.board_representation import BoardRepresentation
 from .player import Player
 
@@ -53,8 +54,19 @@ class AI(Player):
     def _empty_side(self):
         raise NotImplementedError
 
-    def _first_turn(self):
-        raise NotImplementedError
+    def _first_turn(self, board):
+        """
+        Method that returns the choice of the case when the AI player plays the first turn.
+
+        Playing the corner is the best opening move for the first player.
+
+        :param board: current board
+        :type board: BoardRepresentation
+        :return: the choice of the first turn
+        :rtype: tuple
+        """
+        if self._number_of_empty_cells(board) == 9:
+            return choice((0, 2)), choice((0, 2))
     moves = (_first_turn, _second_turn, _win, _block, _fork, _block_opponent_fork,
              _center, _opposite_corner, _empty_corner, _empty_side)
 
