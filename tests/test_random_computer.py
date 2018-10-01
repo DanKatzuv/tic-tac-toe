@@ -11,7 +11,7 @@ def test_row(mark):
                     [' ', mark, mark],
                     [' ', mark, ' ']]
 
-    for _ in range(10):
+    for _ in range(100):
         player = RandomComputer(mark)
         row, column = player.turn(board)
         assert board.is_cell_empty(row, column)
