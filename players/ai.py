@@ -155,3 +155,19 @@ class AI(Player):
         :rtype: int
         """
         return sum(1 for row, column in product(range(3), range(3)) if board[row][column] == Board.EMPTY)
+
+    @staticmethod
+    def _is_almost_full(sequence, mark):
+        """
+        Return whether sequence is "almost-full".
+
+        An "almost-full" sequence is a sequence that includes two cells with the same mark and another empty cell.
+
+        :param sequence: sequence for checking whether it is "almost-full"
+        :type sequence: list
+        :param mark: mark for checking whether there are two cells in sequence of that mark
+        :type mark: str
+        :return: whether sequence is "almost-full"
+        :rtype: bool
+        """
+        return sequence.count(mark) == 2 and sequence.count(Board.EMPTY) == 1
