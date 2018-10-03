@@ -1,6 +1,3 @@
-from board import board
-
-
 class BoardRepresentation:
     """
     Class that represents a read-only board for a player.
@@ -35,7 +32,7 @@ class BoardRepresentation:
         :return: whether a certain cell is empty
         :rtype: bool
         """
-        return self.board[row][column] == board.Board.EMPTY
+        return self.board[row][column] == ' '
 
     def __getitem__(self, row):
         return self.board[row]
