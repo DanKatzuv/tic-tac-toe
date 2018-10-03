@@ -35,10 +35,30 @@ class AI(Player):
                 return result
 
     def _win(self, board):
+        """
+        Method for handling Rule 1: Win.
+    
+        Win: If the player has two in a row, they can place a third to get three in a row.
+    
+        :type board: BoardRepresentation
+        :param board: current board
+        :return: choice according to Rule 1 if possible
+        :rtype: tuple
+        """
         return self._win_and_block(board, self.mark)
-
+        
     def _block(self, board):
-        return self._win_and_block(board, Game.SECOND_PLAYER_MARK if self.mark == Game.FIRST_PLAYER_MARK else Game.FIRST_PLAYER_MARK)
+        """
+        Method for handling Rule 2: Block.
+    
+        Block: If the opponent has two in a row, the player must play the third themselves to block the opponent.
+    
+        :type board: BoardRepresentation
+        :param board: current board
+        :return: choice according to Rule 2 if possible
+        :rtype: tuple
+        """
+        return self._win_and_block(board, Game.FIRST_PLAYER_MARK if self.mark == Game.SECOND_PLAYER_MARK else Game.SECOND_PLAYER_MARK)
 
     @classmethod
     def _win_and_block(cls, board, mark):
@@ -154,11 +174,12 @@ class AI(Player):
         :rtype: list
         """
         sequences = list()
-        sequences.append([row for row in board])  # rows
-        sequences.append(list(zip(*board)))  # columns
-        sequences.append([board[i][i] for i in range(3)])  # main diagonal
-        sequences.append([board[i][2 - i]
-                          for i in range(3)])  # secondary_diagonal
+        sequences.extend([Sequence(row, 'row', number) for number, row in enumerate(board)])  # rows
+        sequences.extend(
+            [Sequence(list(column), 'column', number) for number, column in enumerate(list(zip(*board)))])  # columns
+        sequences.append(Sequence([board[i][i] for i in range(3)], 'main'))  # main diagonal
+        sequences.append(Sequence([board[i][2 - i]
+                                   for i in range(3)], 'secondary'))  # secondary_diagonal
         return sequences
 
     @staticmethod
@@ -168,7 +189,7 @@ class AI(Player):
 
         :param board: current board
         :type board: BoardRepresentation
-        :return: number of empty cells in board.
+        :return: number of empty cells in board
         :rtype: int
         """
         return sum(1 for row, column in product(range(3), range(3)) if board[row][column] == Board.EMPTY)
@@ -181,10 +202,40 @@ class AI(Player):
         An "almost-full" sequence is a sequence that includes two cells with the same mark and another empty cell.
 
         :param sequence: sequence for checking whether it is "almost-full"
-        :type sequence: list
+        :type sequence: Sequence
         :param mark: mark for checking whether there are two cells in sequence of that mark
         :type mark: str
         :return: whether sequence is "almost-full"
         :rtype: bool
         """
         return sequence.count(mark) == 2 and sequence.count(Board.EMPTY) == 1
+
+
+class Sequence:
+    """
+    A class that represents a sequence of a tic-tac-toe board.
+
+    A sequence can be any row, column or diagonal in a board.
+    """
+
+    def __init__(self, sequence, dimension, number=None):
+        """
+        Instantiate a new Sequence object.
+
+        :param sequence: the sequence
+        :type sequence: list
+        :param dimension: dimension of the sequence (row, column, main diagonal or secondary diagonal)
+        :type dimension: str
+        :param number: number of the sequence (only if dimension is row or column)
+        :type number: int
+        :raise ValueError: if an invalid dimension is given
+        """
+
+        if dimension not in ('row', 'column', 'main', 'secondary'):
+            raise ValueError('invalid type of sequence')
+        self._sequence = sequence
+        self.__getitem__ = self._sequence.__getitem__
+        self.index = self._sequence.index
+        self.count = self._sequence.count
+        self.dimension = dimension
+        self.number = number
