@@ -10,7 +10,7 @@ class BoardRepresentation:
     """
 
     def __init__(self, board):
-        """Instantiate a tic-tac-toe board represetation.
+        """Instantiate a tic-tac-toe board representation.
 
         :param board: the current board
         :type board: Board
