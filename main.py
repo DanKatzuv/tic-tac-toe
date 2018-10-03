@@ -17,7 +17,7 @@ def player_type_chooser(is_first):
     """
     Return the type of a player.
 
-    :param is_first: whether the current player whose type is chosed is the first player (player X) or the second one (player O)
+    :param is_first: whether the current player whose type is chosen is the first player (player X) or the second one (player O)
     :type is_first: bool
     :return: the type chosen of a player
     :rtype: Player

@@ -1,6 +1,3 @@
-from board import board
-
-
 class BoardRepresentation:
     """
     Class that represents a read-only board for a player.
@@ -10,7 +7,7 @@ class BoardRepresentation:
     """
 
     def __init__(self, board):
-        """Instantiate a tic-tac-toe board represetation.
+        """Instantiate a tic-tac-toe board representation.
 
         :param board: the current board
         :type board: Board
@@ -35,7 +32,21 @@ class BoardRepresentation:
         :return: whether a certain cell is empty
         :rtype: bool
         """
-        return self.board[row][column] == board.Board.EMPTY
+        return self.board[row][column] == ' '
 
     def __getitem__(self, row):
         return self.board[row]
+
+    def __iter__(self):
+        self.index = 0
+        return self
+
+    def __next__(self):
+        try:
+            result = self.board[self.index]
+            self.index += 1
+            return result
+        except IndexError:
+            raise StopIteration
+
+
