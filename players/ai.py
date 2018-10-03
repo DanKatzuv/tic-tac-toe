@@ -161,28 +161,6 @@ class AI(Player):
              _center, _opposite_corner, _empty_corner, _empty_side)
 
     @staticmethod
-    def _all_sequences(board):
-        """
-        Return all the sequences in a board.
-
-        A "sequence" is defined as every sequence of cells in a tic-tac-toe board, so "all sequences" is all the
-        rows, all the columns, the main diagonal and the secondary diagonal.
-
-        :param board: current board
-        :type: BoardRepresentation
-        :return: all the sequences in the board
-        :rtype: list
-        """
-        sequences = list()
-        sequences.extend([Sequence(row, 'row', number) for number, row in enumerate(board)])  # rows
-        sequences.extend(
-            [Sequence(list(column), 'column', number) for number, column in enumerate(list(zip(*board)))])  # columns
-        sequences.append(Sequence([board[i][i] for i in range(3)], 'main'))  # main diagonal
-        sequences.append(Sequence([board[i][2 - i]
-                                   for i in range(3)], 'secondary'))  # secondary_diagonal
-        return sequences
-
-    @staticmethod
     def _number_of_empty_cells(board):
         """
         Return the number of the empty cells in the board.
