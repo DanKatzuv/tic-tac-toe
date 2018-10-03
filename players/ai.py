@@ -180,40 +180,10 @@ class AI(Player):
         An "almost-full" sequence is a sequence that includes two cells with the same mark and another empty cell.
 
         :param sequence: sequence for checking whether it is "almost-full"
-        :type sequence: Sequence
+        :type sequence: list
         :param mark: mark for checking whether there are two cells in sequence of that mark
         :type mark: str
         :return: whether sequence is "almost-full"
         :rtype: bool
         """
         return sequence.count(mark) == 2 and sequence.count(Board.EMPTY) == 1
-
-
-class Sequence:
-    """
-    A class that represents a sequence of a tic-tac-toe board.
-
-    A sequence can be any row, column or diagonal in a board.
-    """
-
-    def __init__(self, sequence, dimension, number=None):
-        """
-        Instantiate a new Sequence object.
-
-        :param sequence: the sequence
-        :type sequence: list
-        :param dimension: dimension of the sequence (row, column, main diagonal or secondary diagonal)
-        :type dimension: str
-        :param number: number of the sequence (only if dimension is row or column)
-        :type number: int
-        :raise ValueError: if an invalid dimension is given
-        """
-
-        if dimension not in ('row', 'column', 'main', 'secondary'):
-            raise ValueError('invalid type of sequence')
-        self._sequence = sequence
-        self.__getitem__ = self._sequence.__getitem__
-        self.index = self._sequence.index
-        self.count = self._sequence.count
-        self.dimension = dimension
-        self.number = number
