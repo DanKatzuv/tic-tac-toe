@@ -36,3 +36,17 @@ class BoardRepresentation:
 
     def __getitem__(self, row):
         return self.board[row]
+
+    def __iter__(self):
+        self.index = 0
+        return self
+
+    def __next__(self):
+        try:
+            result = self.board[self.index]
+            self.index += 1
+            return result
+        except IndexError:
+            raise StopIteration
+
+
