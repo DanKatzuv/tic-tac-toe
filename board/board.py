@@ -1,6 +1,6 @@
 from itertools import product
 
-from board_representation import BoardRepresentation
+from board.board_representation import BoardRepresentation
 
 
 class Board:
@@ -34,13 +34,13 @@ class Board:
         """
         Return representation of the board for a player.
 
-        :return: represantion of the current board
-        :rtype: BoardRepresentaion
+        :return: representation of the current board
+        :rtype: BoardRepresentation
         """
 
         return BoardRepresentation(self)
 
-    def move(self, player, row, column):
+    def move(self, player, cell):
         """
         Make one move in the game and return whether a win occurred.
         :param player: current player
@@ -98,10 +98,10 @@ class Board:
         """
         Return whether a win has occurred.
 
-        :param row: row the last mark has been inserted into
-        :type row: int
-        :param column: column the last mark has been inserted into
-        :type column: int
+        :param row_number: row the last mark has been inserted into
+        :type row_number: int
+        :param column_number: column the last mark has been inserted into
+        :type column_number: int
         :return: whether a win has occurred
         :rtype: bool
         """
