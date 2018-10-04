@@ -48,5 +48,3 @@ class BoardRepresentation:
             return result
         except IndexError:
             raise StopIteration
-
-

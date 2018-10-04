@@ -13,6 +13,7 @@ def test_first_turn(player_mark):
     board = Board()
     assert ai._first_turn(board.representation()) in product((0, 2), (0, 2))
 
+
 @mark.parametrize('player_mark', (Game.FIRST_PLAYER_MARK, Game.SECOND_PLAYER_MARK))
 def test_second_turn_corner_opening(player_mark):
     other_mark = Game.FIRST_PLAYER_MARK
