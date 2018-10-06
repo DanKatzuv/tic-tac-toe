@@ -6,20 +6,20 @@ class BoardRepresentation:
     without having the ability to change it on their own.
     """
 
-    def __init__(self, board):
+    def __init__(self, rows):
         """Instantiate a tic-tac-toe board representation.
 
-        :param board: the current board
-        :type board: Board
+        :param rows: the current board
+        :type rows: list
         """
-        self.board = board.board
+        self._rows = rows
 
     def __str__(self):
         """
         :return: a string describing the current board
         :rtype: str
         """
-        return ''.join(' | '.join(row) + '\n' for row in self.board)
+        return ''.join(' | '.join(row) + '\n' for row in self._rows)
 
     def is_cell_empty(self, row, column):
         """
@@ -32,7 +32,7 @@ class BoardRepresentation:
         :return: whether a certain cell is empty
         :rtype: bool
         """
-        return self.board[row][column] == ' '
+        return self._rows[row][column] == ' '
 
     def __getitem__(self, row):
         return self.board[row]

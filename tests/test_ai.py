@@ -19,24 +19,24 @@ def test_second_turn_corner_opening(player_mark):
     other_mark = Game.FIRST_PLAYER_MARK
     ai = AI(player_mark)
     board = Board()
-    board._board = [[other_mark, ' ', ' '],
-                    [' ', ' ', ' '],
-                    [' ', ' ', ' ']]
+    board._rows = [[other_mark, ' ', ' '],
+                   [' ', ' ', ' '],
+                   [' ', ' ', ' ']]
     assert ai._second_turn(board.representation()) == (1, 1)
 
-    board._board = [[' ', ' ', other_mark],
-                    [' ', ' ', ' '],
-                    [' ', ' ', ' ']]
+    board._rows = [[' ', ' ', other_mark],
+                   [' ', ' ', ' '],
+                   [' ', ' ', ' ']]
     assert ai._second_turn(board.representation()) == (1, 1)
 
-    board._board = [[' ', ' ', ' '],
-                    [' ', ' ', ' '],
-                    [' ', ' ', other_mark]]
+    board._rows = [[' ', ' ', ' '],
+                   [' ', ' ', ' '],
+                   [' ', ' ', other_mark]]
     assert ai._second_turn(board.representation()) == (1, 1)
 
-    board._board = [[' ', ' ', ' '],
-                    [' ', ' ', ' '],
-                    [other_mark, ' ', ' ']]
+    board._rows = [[' ', ' ', ' '],
+                   [' ', ' ', ' '],
+                   [other_mark, ' ', ' ']]
     assert ai._second_turn(board.representation()) == (1, 1)
 
 

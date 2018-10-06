@@ -9,16 +9,16 @@ class Board:
 
     def __init__(self):
         """Instantiate a tic-tac-toe board."""
-        self._board = [[' ', ' ', ' '],
-                       [' ', ' ', ' '],
-                       [' ', ' ', ' ']]
+        self._rows = [[' ', ' ', ' '],
+                      [' ', ' ', ' '],
+                      [' ', ' ', ' ']]
 
     def __str__(self):
         """
         :return: a string describing the current board
         :rtype: str
         """
-        return ''.join(' | '.join(row) + '\n' for row in self._board)
+        return ''.join(' | '.join(row) + '\n' for row in self._rows)
 
     @property
     def board(self):
@@ -28,7 +28,7 @@ class Board:
         :return: the current board
         :rtype: list
         """
-        return self._board[:]
+        return self._rows[:]
 
     def representation(self):
         """
@@ -75,7 +75,7 @@ class Board:
         :return: whether a certain cell is empty
         :rtype: bool
         """
-        return self._board[row][column] == self.EMPTY
+        return self._rows[row][column] == self.EMPTY
 
     def _insert(self, player, row, column):
         """
@@ -88,7 +88,7 @@ class Board:
         :param column: column the last mark has been inserted into
         :type column: int
         """
-        self._board[row][column] = player
+        self._rows[row][column] = player
 
     @classmethod
     def _is_win_in_sequence(cls, sequence):
@@ -106,13 +106,13 @@ class Board:
         :rtype: bool
         """
         sequences = list()
-        sequences.append(self._board[row_number])  # row
-        sequences.append([i[column_number] for i in self._board])  # column
+        sequences.append(self._rows[row_number])  # row
+        sequences.append([i[column_number] for i in self._rows])  # column
         if row_number == column_number:
-            sequences.append([self._board[i][i]
+            sequences.append([self._rows[i][i]
                               for i in range(3)])  # main diagonal
         if row_number == 2 - column_number:
-            sequences.append([self._board[i][2 - i]
+            sequences.append([self._rows[i][2 - i]
                               for i in range(3)])  # secondary diagonal
 
         return any(self._is_win_in_sequence(sequence) for sequence in sequences)

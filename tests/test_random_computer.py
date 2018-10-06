@@ -7,9 +7,9 @@ from players import RandomComputer
 @mark.parametrize('mark', ('X', 'O'))
 def test_row(mark):
     board = Board()
-    board._board = [[' ', ' ', ' '],
-                    [' ', mark, mark],
-                    [' ', mark, ' ']]
+    board._rows = [[' ', ' ', ' '],
+                   [' ', mark, mark],
+                   [' ', mark, ' ']]
 
     for _ in range(100):
         player = RandomComputer(mark)
