@@ -80,8 +80,19 @@ class AI(Player):
             empty = secondary_diagonal.index(Board.EMPTY)
             return empty, 2 - empty
 
-    def _fork(self):
-        raise NotImplementedError
+    def _create_fork(self, board):
+        """
+        Return the choice according to Rule 3: Fork.
+
+        Fork: Create an opportunity where the player has two threats to win (two non-blocked lines of 2).
+
+        :param board: current board
+        :type board: BoardRepresentation
+        :return: choice according to Rule 3 if possible
+        :rtype: tuple
+        """
+        return self._fork(self.mark, board)
+
     @staticmethod
     def _fork(mark, board):
         sequences = set()
@@ -173,7 +184,7 @@ class AI(Player):
 
             return choice(choices)
 
-    moves = (_first_turn, _second_turn, _win, _block, _fork, _block_opponent_fork,
+    moves = (_first_turn, _second_turn, _win, _block, _create_fork, _block_fork,
              _center, _opposite_corner, _empty_corner, _empty_side)
 
     @staticmethod
