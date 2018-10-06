@@ -34,17 +34,17 @@ class BoardRepresentation:
         """
         return self._rows[row][column] == ' '
 
-    def __getitem__(self, row):
-        return self.board[row]
+    @property
+    def rows(self):
 
-    def __iter__(self):
-        self.index = 0
-        return self
+    @property
+    def columns(self):
+        """
 
-    def __next__(self):
-        try:
-            result = self.board[self.index]
-            self.index += 1
-            return result
-        except IndexError:
-            raise StopIteration
+    @property
+    def main_diagonal(self):
+        """
+        :return: main diagonal of the board.
+        :rtype: list
+        """
+        return [self._rows[row][row] for row in range(3)]
