@@ -1,3 +1,6 @@
+from itertools import product
+
+
 class BoardRepresentation:
     """
     Class that represents a read-only board for a player.
@@ -69,12 +72,17 @@ class BoardRepresentation:
         """
         return [self._rows[row][2 - row] for row in range(3)]
 
-    def _all_sequences(self):
+    @staticmethod
+    def all_sequences_coordinates():
         """
         :return: all sequences in the board
         :rtype: list[list]
         """
-        sequences = self.rows + self.columns
-        sequences.append(self.main_diagonal)
-        sequences.append(self.secondary_diagonal)
+        sequences = list()
+        for row_number in range(3):
+            sequences.append(list(product((row_number,), range(3))))
+        for column_number in range(3):
+            sequences.append(list(product(range(3), (column_number,))))
+        sequences.append([(row, row) for row in range(3)])
+        sequences.append([(row, 2 - row) for row in range(3)])
         return sequences
