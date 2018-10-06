@@ -40,7 +40,7 @@ class Board:
 
         return BoardRepresentation(self)
 
-    def move(self, player, cell):
+    def move(self, player, row, column):
         """
         Make one move in the game and return whether a win occurred.
         :param player: current player
