@@ -93,6 +93,23 @@ class AI(Player):
         """
         return self._fork(self.mark, board)
 
+    def _block_fork(self, board):
+        """
+        Return the choice according to Rule 4: Blocking an opponent's fork.
+
+        Blocking an opponent's fork: If there is only one possible fork for the opponent, the player should block it.
+        Otherwise, the player should block any forks in any way that simultaneously allows them to create two in a
+        row. Otherwise, the player should create a two in a row to force the opponent into defending, as long as it
+        doesn't result in them creating a fork. For example, if "X" has two opposite corners and "O" has the center,
+        "O" must not play a corner in order to win. (Playing a corner in this scenario creates a fork for "X" to win.)
+
+        :param board: current board
+        :type board: BoardRepresentation
+        :return: choice according to Rule 4 if possible
+        :rtype: tuple
+        """
+        return self._fork(self.other_mark(), board)
+
     @staticmethod
     def _fork(mark, board):
         sequences = set()
