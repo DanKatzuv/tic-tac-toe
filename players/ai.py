@@ -30,7 +30,7 @@ class AI(Player):
         :rtype: tuple
         """
         for move in self.moves:
-            result = move(self)
+            result = move(self, board)
             if result:
                 return result
 
