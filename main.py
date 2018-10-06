@@ -23,7 +23,7 @@ def player_type_chooser(is_first):
     :rtype: Player
     """
     while True:
-        player_x = input(f"""Enter the type of the {'first' if is_first else 'second'} player (player {'X' if is_first else 'O'}):
+        player_x = input(f"""Enter the type of the {'first' if is_first else 'second'} player (player {Game.FIRST_PLAYER_MARK if is_first else Game.SECOND_PLAYER_MARK}):
 1 for Human, 2 for RandomComputer or 3 for AI: """)
         if player_x == '1':
             return Human
