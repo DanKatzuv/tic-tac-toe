@@ -68,3 +68,13 @@ class BoardRepresentation:
         :rtype: list
         """
         return [self._rows[row][2 - row] for row in range(3)]
+
+    def _all_sequences(self):
+        """
+        :return: all sequences in the board
+        :rtype: list[list]
+        """
+        sequences = self.rows + self.columns
+        sequences.append(self.main_diagonal)
+        sequences.append(self.secondary_diagonal)
+        return sequences
