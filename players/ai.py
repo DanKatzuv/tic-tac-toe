@@ -58,7 +58,7 @@ class AI(Player):
         :return: choice according to Rule 2 if possible
         :rtype: tuple
         """
-        return self._win_and_block(board, Game.FIRST_PLAYER_MARK if self.mark == Game.SECOND_PLAYER_MARK else Game.SECOND_PLAYER_MARK)
+        return self._win_and_block(board, self.other_mark())
 
     @classmethod
     def _win_and_block(cls, board, mark):
