@@ -82,9 +82,22 @@ class AI(Player):
 
     def _fork(self):
         raise NotImplementedError
+    @staticmethod
+    def _fork(mark, board):
+        sequences = set()
+        for sequence in board.all_sequences_coordinates():
+            for row, column in sequence:
+                if board.rows[row][column] == mark:
+                    sequences.add(tuple(sequence))
+                    continue
 
-    def _block_opponent_fork(self):
-        raise NotImplementedError
+        for sequence in sequences:
+            for sequence1 in sequences:
+                if sequence != sequence1:
+                    intersection = set(sequence) & set(sequence1)
+                    for row, column in intersection:
+                        if board.is_cell_empty(row, column):
+                            return row, column
 
     def _center(self):
         raise NotImplementedError
