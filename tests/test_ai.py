@@ -103,6 +103,23 @@ def test_block(player_mark):
     assert ai.turn(board.representation()) == (1, 1)
 
 
+@mark.parametrize('player_mark', (Game.FIRST_PLAYER_MARK, Game.SECOND_PLAYER_MARK))
+def test_create_fork(player_mark):
+    other_mark = other_player(player_mark)
+    ai = AI(player_mark)
+    board = Board()
+    board._rows = [[player_mark, ' ', ' '],
+                   [' ', other_mark, ' '],
+                   [' ', ' ', player_mark]]
+    assert ai.turn(board.representation()) in ((2, 0), (0, 2))
+
+    board._rows = [[player_mark, ' ', ' '],
+                   [player_mark, ' ', ' '],
+                   [' ', ' ', ' ']]
+    assert ai._create_fork(board.representation()) == (1, 1)
+
+
+
 def other_player(player_mark):
     """
     Return the other player's mark, based on the given mark.
