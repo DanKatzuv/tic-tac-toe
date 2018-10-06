@@ -38,7 +38,7 @@ class Board:
         :rtype: BoardRepresentation
         """
 
-        return BoardRepresentation(self)
+        return BoardRepresentation(self._rows)
 
     def move(self, player, row, column):
         """
