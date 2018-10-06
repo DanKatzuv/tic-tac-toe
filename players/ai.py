@@ -145,7 +145,7 @@ class AI(Player):
             if not all((board.is_cell_empty(row, column) for row, column in  # if a corner opening occurred,
                         product((0, 2), (0, 2)))):
                 return 1, 1  # fill the center
-            if not board.is_cell_empty(1, 1):  # if a center opening occured,
+            if not board.is_cell_empty(1, 1):  # if a center opening occurred,
                 return choice((0, 2)), choice((0, 2))  # fill one of the corners
 
             for row_number, row in enumerate(board.rows):  # if an edge opening occurred, find location of inserted mark
