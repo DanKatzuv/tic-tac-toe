@@ -187,3 +187,12 @@ class AI(Player):
         :rtype: bool
         """
         return sequence.count(mark) == 2 and sequence.count(Board.EMPTY) == 1
+
+    def other_mark(self):
+        """
+        Return the other player's mark.
+
+        :return: mark of the other player
+        :rtype: str
+        """
+        return Game.FIRST_PLAYER_MARK if self.mark == Game.SECOND_PLAYER_MARK else Game.SECOND_PLAYER_MARK
