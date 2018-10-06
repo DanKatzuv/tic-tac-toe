@@ -62,17 +62,20 @@ class AI(Player):
 
     @classmethod
     def _win_and_block(cls, board, mark):
-        for row_number, row in enumerate(board):  # rows
+        for row_number, row in enumerate(board.rows):
             if cls._is_almost_full(row, mark):
-                return row_number, row.index(Board.EMPTY)  # columns
-        for column_number, column in zip(*board):
+                return row_number, row.index(Board.EMPTY)
+
+        for column_number, column in enumerate(board.columns):
             if cls._is_almost_full(column, mark):
-                return list(column).index(Board.EMPTY), column_number
-        main_diagonal = [board[row][row] for row in range(3)]
-        if cls._is_almost_full(main_diagonal, mark):  # main diagonal
+                return column.index(Board.EMPTY), column_number
+
+        main_diagonal = board.main_diagonal
+        if cls._is_almost_full(main_diagonal, mark):
             empty = main_diagonal.index(Board.EMPTY)
             return empty, empty
-        secondary_diagonal = [board[row][2 - row] for row in range(3)]
+
+        secondary_diagonal = board.secondary_diagonal
         if cls._is_almost_full(secondary_diagonal, mark):
             empty = secondary_diagonal.index(Board.EMPTY)
             return empty, 2 - empty

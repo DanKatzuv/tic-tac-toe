@@ -36,10 +36,19 @@ class BoardRepresentation:
 
     @property
     def rows(self):
+        """
+        :return: rows of the board
+        :rtype: list[list]
+        """
+        return self._rows
 
     @property
     def columns(self):
         """
+        :return: columns of the board
+        :rtype: list[list]
+        """
+        return list(zip(*self._rows))
 
     @property
     def main_diagonal(self):
@@ -48,3 +57,11 @@ class BoardRepresentation:
         :rtype: list
         """
         return [self._rows[row][row] for row in range(3)]
+
+    @property
+    def secondary_diagonal(self):
+        """
+        :return: main diagonal of the board.
+        :rtype: list
+        """
+        return [self._rows[row][2 - row] for row in range(3)]
