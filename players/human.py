@@ -15,29 +15,26 @@ class Human(Player):
         """
         while True:
             print(board)
-            row = self._get_user_input('row', board)
-            column = self._get_user_input('column', board)
-
+            cell = self._get_user_input(board)
+            row, column = cell[0], cell[1]
             if not board.is_cell_empty(row, column):
-                print(f'The cell at row {row}, column {column} is not empty')
+                print(f'cell number {cell} is not empty')
                 continue
 
             return row, column
 
-    def _get_user_input(self, name, board):
+    def _get_user_input(self, board):
         """
         Get the row or column number the user inputted.
 
-        :param name: the dimension (row or column) the number from the user is desired of
-        :type name: str
         :param board: the current board
         :type board: BoardRepresentation
         :return: the user's choice
-        :rtype: int
+        :rtype: tuple
         """
         while True:
             number = input(
-                f'Player {self.mark}, enter a {name} number between 1 and 3: ')
+                f'Player {self.mark}, enter a cell number between 1 and 9: ')
             try:
                 number = int(number)
             except ValueError:
@@ -45,9 +42,9 @@ class Human(Player):
                 print(board)
                 continue
 
-            if not 0 < number <= 3:
-                print(f'{name.capitalize()} {number} is out of bounds')
+            if not 0 < number <= 9:
+                print(f'Cell {number} is out of bounds')
                 print(board)
                 continue
 
-            return number - 1
+            return divmod(number - 1, 3)
