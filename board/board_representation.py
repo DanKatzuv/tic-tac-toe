@@ -48,7 +48,10 @@ class BoardRepresentation:
         :return: columns of the board
         :rtype: list[list]
         """
-        return list(zip(*self._rows))
+        columns = list()
+        for column in zip(*self._rows):
+            columns.append(list(column))
+        return columns
 
     @property
     def main_diagonal(self):
