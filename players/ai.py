@@ -150,7 +150,7 @@ class AI(Player):
 
             for row_number, row in enumerate(board.rows):  # if an edge opening occurred, find location of inserted mark
                 if Game.FIRST_PLAYER_MARK in row:
-                    first_row, first_column = row, row.find(Game.FIRST_PLAYER_MARK)
+                    first_row, first_column = row, row.index(Game.FIRST_PLAYER_MARK)
 
             choices = [(1, 1)]  # choices available if edge opening occurred
             for dimension in (first_row, first_column):
