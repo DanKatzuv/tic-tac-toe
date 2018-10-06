@@ -148,7 +148,7 @@ class AI(Player):
             if not board.is_cell_empty(1, 1):  # if a center opening occured,
                 return choice((0, 2)), choice((0, 2))  # fill one of the corners
 
-            for row_number, row in enumerate(board):  # if an edge opening occurred, find location of inserted mark
+            for row_number, row in enumerate(board.rows):  # if an edge opening occurred, find location of inserted mark
                 if Game.FIRST_PLAYER_MARK in row:
                     first_row, first_column = row, row.find(Game.FIRST_PLAYER_MARK)
 
@@ -173,7 +173,7 @@ class AI(Player):
         :return: number of empty cells in board
         :rtype: int
         """
-        return sum(1 for row, column in product(range(3), range(3)) if board[row][column] == Board.EMPTY)
+        return sum(1 for row, column in product(range(3), range(3)) if board.rows[row][column] == Board.EMPTY)
 
     @staticmethod
     def _is_almost_full(sequence, mark):
