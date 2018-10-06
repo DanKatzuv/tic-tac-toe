@@ -54,7 +54,6 @@ def test_second_turn_center_opening(player_mark):
 
 @mark.parametrize('player_mark', (Game.FIRST_PLAYER_MARK, Game.SECOND_PLAYER_MARK))
 def test_win(player_mark):
-    other_mark = other_player(player_mark)
     ai = AI(player_mark)
     board = Board()
     board._rows = [[player_mark, ' ', player_mark],
