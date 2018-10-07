@@ -46,7 +46,7 @@ class AI(Player):
         :rtype: tuple
         """
         return self._win_and_block(board, self.mark)
-        
+
     def _block(self, board):
         """
         Method for handling Rule 2: Block.
@@ -252,7 +252,7 @@ class AI(Player):
 
             return choice(choices)
 
-    moves = (_first_turn, _second_turn, _win, _block, _create_fork, _block_fork,
+    moves = (_first_turn, _second_turn, _win, _block, _fork, _block_fork,
              _center, _opposite_corner, _empty_corner, _empty_side)
 
     @staticmethod
