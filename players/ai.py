@@ -58,7 +58,7 @@ class AI(Player):
         :return: choice according to Rule 2 if possible
         :rtype: tuple
         """
-        return self._win_and_block(board, self.other_mark())
+        return self._win_and_block(board, self._other_mark())
 
     @classmethod
     def _win_and_block(cls, board, mark):
@@ -151,7 +151,7 @@ class AI(Player):
         :return: choice according to Rule 4 if possible
         :rtype: tuple
         """
-        other_mark = self.other_mark()
+        other_mark = self._other_mark()
         sequences = set()
         for sequence in board.all_sequences_coordinates():
             for row, column in sequence:
@@ -300,7 +300,7 @@ class AI(Player):
         """
         return sequence.count(main_char) == main_times and sequence.count(secondary_char) == secondary_times
 
-    def other_mark(self):
+    def _other_mark(self):
         """
         Return the other player's mark.
 
