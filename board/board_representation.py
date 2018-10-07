@@ -75,7 +75,7 @@ class BoardRepresentation:
     @staticmethod
     def all_sequences_coordinates():
         """
-        :return: all sequences in the board
+        :return: all sequences coordinates in the board
         :rtype: list[list]
         """
         sequences = list()
