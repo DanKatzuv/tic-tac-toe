@@ -63,20 +63,20 @@ class AI(Player):
     @classmethod
     def _win_and_block(cls, board, mark):
         for row_number, row in enumerate(board.rows):
-            if cls._is_almost_full(row, mark):
+            if cls._is_almost_full(row, mark, Board.EMPTY):
                 return row_number, row.index(Board.EMPTY)
 
         for column_number, column in enumerate(board.columns):
-            if cls._is_almost_full(column, mark):
+            if cls._is_almost_full(column, mark, Board.EMPTY):
                 return column.index(Board.EMPTY), column_number
 
         main_diagonal = board.main_diagonal
-        if cls._is_almost_full(main_diagonal, mark):
+        if cls._is_almost_full(main_diagonal, mark, Board.EMPTY):
             empty = main_diagonal.index(Board.EMPTY)
             return empty, empty
 
         secondary_diagonal = board.secondary_diagonal
-        if cls._is_almost_full(secondary_diagonal, mark):
+        if cls._is_almost_full(secondary_diagonal, mark, Board.EMPTY):
             empty = secondary_diagonal.index(Board.EMPTY)
             return empty, 2 - empty
 
@@ -217,20 +217,26 @@ class AI(Player):
         return sum(1 for row, column in product(range(3), range(3)) if board.rows[row][column] == Board.EMPTY)
 
     @staticmethod
-    def _is_almost_full(sequence, mark):
+    def _is_almost_full(sequence, main_char, secondary_char, main_times=2, secondary_times=1):
         """
-        Return whether sequence is "almost-full".
+        Return whether :sequence: is "almost-full".
 
-        An "almost-full" sequence is a sequence that includes two cells with the same mark and another empty cell.
-
-        :param sequence: sequence for checking whether it is "almost-full"
+        An "almost-full" sequence is a sequence that includes :main_times: cell(s) with the :main_char: and other
+        :secondary_times: cell(s) with :secondary_char:.
+        :main_char
+        :param sequence: sequence to be checked
         :type sequence: list
-        :param mark: mark for checking whether there are two cells in sequence of that mark
-        :type mark: str
-        :return: whether sequence is "almost-full"
-        :rtype: bool
+        :param main_char: character that should appear twice
+        :type main_char: str
+        :param secondary_char: character that should appear once
+        :type secondary_char: str
+        :param main_times: amount of times :main_char: should appear
+        :type main_times: int
+        :param secondary_times: amount of times :secondary_char: should appear
+        :type secondary_times: int
+        :return: whether :sequence: is "almost-full"
         """
-        return sequence.count(mark) == 2 and sequence.count(Board.EMPTY) == 1
+        return sequence.count(main_char) == main_times and sequence.count(secondary_char) == secondary_times
 
     def other_mark(self):
         """
