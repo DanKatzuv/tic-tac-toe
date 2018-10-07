@@ -95,6 +95,14 @@ class BoardRepresentation:
         """
         return [(0, 0), (0, 2), (2, 0), (2, 2)]
 
+    @property
+    def edges(self):
+        """
+        :return: coordinates of the edges of the board
+        :rtype: list[tuple]
+        """
+        return [(0, 1), (1, 2), (1, 0), (2, 1)]
+
     def all_sequences(self):
         """
         :return: all sequences in the board
