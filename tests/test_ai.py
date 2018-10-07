@@ -132,12 +132,12 @@ def test_block_fork(player_mark):
     board._rows = [[other_mark, ' ', ' '],
                    [' ', player_mark, ' '],
                    [' ', ' ', other_mark]]
-    assert ai.turn(board.representation()) in ((2, 0), (0, 2))
+    assert ai.turn(board.representation()) in ((0, 2), (2, 0))
 
     board._rows = [[player_mark, ' ', ' '],
                    [' ', other_mark, ' '],
                    [' ', ' ', other_mark]]
-    assert ai._block_fork(board.representation()) == (2, 0)
+    assert ai.turn(board.representation()) in ((0, 2), (2, 0))
 
 
 def other_player(player_mark):
