@@ -179,7 +179,7 @@ class AI(Player):
         return choice(combos)
 
     @staticmethod
-    def _center():
+    def _center(board):
         """
         Return the choice according to Rule 5: Center.
 
@@ -187,9 +187,12 @@ class AI(Player):
         player more opportunities to make a mistake and may therefore be the better choice; however, it makes no
         difference between perfect players.)
 
+        :param board: current board
+        :type board: BoardRepresentation
         :return: choice according to Rule 5 if possible
         :rtype: tuple
         """
+        if board.is_cell_empty(1, 1):
             return 1, 1
 
     def _opposite_corner(self, board):
