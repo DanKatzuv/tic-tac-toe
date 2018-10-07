@@ -86,3 +86,10 @@ class BoardRepresentation:
         sequences.append([(row, row) for row in range(3)])
         sequences.append([(row, 2 - row) for row in range(3)])
         return sequences
+
+    def all_sequences(self):
+        """
+        :return: all sequences in the board
+        :rtype: list[list]
+        """
+        return self.rows + self.columns + self.main_diagonal + self.secondary_diagonal
