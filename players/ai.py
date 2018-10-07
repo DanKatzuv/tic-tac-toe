@@ -125,7 +125,33 @@ class AI(Player):
         :return: choice according to Rule 4 if possible
         :rtype: tuple
         """
-        return self._fork(self.other_mark(), board)
+        other_mark = self.other_mark()
+        sequences = set()
+        for sequence in board.all_sequences_coordinates():
+            for row, column in sequence:
+                if board.rows[row][column] == other_mark:
+                    sequences.add(tuple(sequence))
+                    continue
+
+        combos = self._available_winning_combos(board)
+        best = list()
+        better = list()
+        for sequence in sequences:
+            for sequence1 in sequences:
+                if sequence != sequence1:
+                    intersection = set(sequence) & set(sequence1)
+                    for row, column in intersection:
+                        if board.is_cell_empty(row, column):
+                            if (row, column) in combos:
+                                best.append((row, column))
+                            else:
+                                better.append((row, column))
+        if len(best) > 0:
+            return choice(best)
+        if len(better) > 0:
+            return choice(better)
+        return choice(combos)
+
     def _fork(self, board):
         """
         Return the choice according to Rule 3: Fork.
