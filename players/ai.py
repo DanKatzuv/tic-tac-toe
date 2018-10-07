@@ -178,34 +178,19 @@ class AI(Player):
             return choice(better)
         return choice(combos)
 
-    def _fork(self, board):
+    @staticmethod
+    def _center():
         """
-        Return the choice according to Rule 3: Fork.
+        Return the choice according to Rule 5: Center.
 
-        Fork: Create an opportunity where the player has two threats to win (two non-blocked lines of 2).
+        Center: A player marks the center. (If it is the first move of the game, playing on a corner gives the second
+        player more opportunities to make a mistake and may therefore be the better choice; however, it makes no
+        difference between perfect players.)
 
-        :param board: current board
-        :type board: BoardRepresentation
-        :return: choice according to Rule 3 if possible
+        :return: choice according to Rule 5 if possible
         :rtype: tuple
         """
-        sequences = set()
-        for sequence in board.all_sequences_coordinates():
-            for row, column in sequence:
-                if board.rows[row][column] == self.mark:
-                    sequences.add(tuple(sequence))
-                    continue
-
-        for sequence in sequences:
-            for sequence1 in sequences:
-                if sequence != sequence1:
-                    intersection = set(sequence) & set(sequence1)
-                    for row, column in intersection:
-                        if board.is_cell_empty(row, column):
-                            return row, column
-
-    def _center(self):
-        raise NotImplementedError
+        return 1, 1
 
     def _opposite_corner(self):
         raise NotImplementedError
