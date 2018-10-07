@@ -116,7 +116,7 @@ def test_create_fork(player_mark):
     board._rows = [[player_mark, ' ', ' '],
                    [player_mark, ' ', ' '],
                    [' ', ' ', ' ']]
-    assert ai._create_fork(board.representation()) == (1, 1)
+    assert ai._fork(board.representation()) == (1, 1)
 
 
 @mark.parametrize('player_mark', (Game.FIRST_PLAYER_MARK, Game.SECOND_PLAYER_MARK))
