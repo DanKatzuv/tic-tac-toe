@@ -80,18 +80,35 @@ class AI(Player):
             empty = secondary_diagonal.index(Board.EMPTY)
             return empty, 2 - empty
 
-    def _create_fork(self, board):
+    def _available_winning_combos(self, board):
         """
-        Return the choice according to Rule 3: Fork.
-
-        Fork: Create an opportunity where the player has two threats to win (two non-blocked lines of 2).
-
         :param board: current board
         :type board: BoardRepresentation
-        :return: choice according to Rule 3 if possible
-        :rtype: tuple
+        :return: all the cells that if they will be filled, a row of two will be created
+        :rtype: list
         """
-        return self._fork(self.mark, board)
+        available = list()
+        for row_number, row in enumerate(board.rows):
+            if self._is_almost_full(row, Board.EMPTY, self.mark):
+                full = row.index(self.mark)
+                available.extend([(row_number, column_number) for column_number in range(3) if column_number != full])
+
+        for column_number, column in enumerate(board.columns):
+            if self._is_almost_full(column, Board.EMPTY, self.mark):
+                full = column.index(self.mark)
+                available.extend([(row_number, column_number) for row_number in range(3) if row_number != full])
+
+        main_diagonal = board.main_diagonal
+        if self._is_almost_full(main_diagonal, Board.EMPTY, self.mark):
+            full = main_diagonal.index(self.mark)
+            available.extend([(cell, cell) for cell in range(3) if cell != full])
+
+        secondary_diagonal = board.secondary_diagonal
+        if self._is_almost_full(secondary_diagonal, Board.EMPTY, self.mark):
+            full = secondary_diagonal.index(self.mark)
+            available.extend([(cell, 2 - cell) for cell in range(3) if cell != full])
+
+        return available
 
     def _block_fork(self, board):
         """
