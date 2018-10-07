@@ -87,6 +87,14 @@ class BoardRepresentation:
         sequences.append([(row, 2 - row) for row in range(3)])
         return sequences
 
+    @property
+    def corners(self):
+        """
+        :return: coordinates of the corners of the board
+        :rtype: list[tuple]
+        """
+        return [(0, 0), (0, 2), (2, 0), (2, 2)]
+
     def all_sequences(self):
         """
         :return: all sequences in the board
