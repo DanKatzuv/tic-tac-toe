@@ -190,10 +190,43 @@ class AI(Player):
         :return: choice according to Rule 5 if possible
         :rtype: tuple
         """
-        return 1, 1
+            return 1, 1
 
-    def _opposite_corner(self):
-        raise NotImplementedError
+    def _opposite_corner(self, board):
+        """
+        Return the choice according to Rule 6: Opposite corner.
+
+        Opposite corner: If the opponent is in the corner, the player plays the opposite corner.
+
+
+
+        :param board:
+        :type board: BoardRepresentation
+        :return:
+        """
+
+        def empty_opposite_full(row1, column1, row2, column2):
+            """
+            :param row1: row of a corner
+            :type row1: int
+            :param column1: column of a corner
+            :type column1: int
+            :param row2: row of the opposite corner
+            :type row2: int
+            :param column2: column of the opposite corner
+            :type column2: int
+            :return: whether it is possible to make a choice according to Rule 6
+            """
+            return board.is_cell_empty(row1, column1) == self._other_mark() and board.is_cell_empty(row2, column2)
+
+        if empty_opposite_full(0, 0, 2, 2):
+            return 2, 2
+        if empty_opposite_full(0, 2, 2, 0):
+            return 2, 0
+        if empty_opposite_full(2, 2, 0, 0):
+            return 0, 0
+        if empty_opposite_full(2, 0, 0, 2):
+            return 0, 2
 
     def _empty_corner(self):
         raise NotImplementedError
