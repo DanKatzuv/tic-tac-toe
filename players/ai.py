@@ -126,13 +126,21 @@ class AI(Player):
         :rtype: tuple
         """
         return self._fork(self.other_mark(), board)
+    def _fork(self, board):
+        """
+        Return the choice according to Rule 3: Fork.
 
-    @staticmethod
-    def _fork(mark, board):
+        Fork: Create an opportunity where the player has two threats to win (two non-blocked lines of 2).
+
+        :param board: current board
+        :type board: BoardRepresentation
+        :return: choice according to Rule 3 if possible
+        :rtype: tuple
+        """
         sequences = set()
         for sequence in board.all_sequences_coordinates():
             for row, column in sequence:
-                if board.rows[row][column] == mark:
+                if board.rows[row][column] == self.mark:
                     sequences.add(tuple(sequence))
                     continue
 
