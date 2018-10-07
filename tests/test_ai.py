@@ -102,6 +102,11 @@ def test_block(player_mark):
                    [other_mark, ' ', ' ']]
     assert ai.turn(board.representation()) == (1, 1)
 
+    board._rows = [[player_mark, ' ', ' '],
+                   [other_mark, other_mark, ' '],
+                   [player_mark, ' ', other_mark]]
+    assert ai.turn(board.representation()) == (1, 2)
+
 
 @mark.parametrize('player_mark', (Game.FIRST_PLAYER_MARK, Game.SECOND_PLAYER_MARK))
 def test_create_fork(player_mark):
