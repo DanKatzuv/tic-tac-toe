@@ -198,6 +198,27 @@ def test_empty_corner(player_mark):
     assert ai._empty_corner(board.representation()) is None
 
 
+@mark.parametrize('player_mark', (Game.FIRST_PLAYER_MARK, Game.SECOND_PLAYER_MARK))
+def test_empty_edge(player_mark):
+    other_mark = other_player(player_mark)
+    ai = AI(player_mark)
+    board = Board()
+    board._rows = [[other_mark, ' ', ' '],
+                   [' ', player_mark, ' '],
+                   [' ', player_mark, ' ']]
+    assert ai._empty_edge(board.representation()) in ((0, 1), (1, 2), (1, 0))
+
+    board._rows = [[player_mark, other_mark, ' '],
+                   [' ', ' ', ' '],
+                   [other_mark, player_mark, other_mark]]
+    assert ai._empty_edge(board.representation()) in ((1, 2), (1, 0))
+
+    board._rows = [[player_mark, player_mark, player_mark],
+                   [other_mark, ' ', player_mark],
+                   [other_mark, other_mark, other_mark]]
+    assert ai._empty_edge(board.representation()) is None
+
+
 def other_player(player_mark):
     """
     Return the other player's mark, based on the given mark.
