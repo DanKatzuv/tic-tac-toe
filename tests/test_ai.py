@@ -156,6 +156,27 @@ def test_center(player_mark):
     assert ai._center(board.representation()) == (1, 1)
 
 
+@mark.parametrize('player_mark', (Game.FIRST_PLAYER_MARK, Game.SECOND_PLAYER_MARK))
+def test_opposite_corner(player_mark):
+    other_mark = other_player(player_mark)
+    ai = AI(player_mark)
+    board = Board()
+    board._rows = [[other_mark, ' ', ' '],
+                   [' ', player_mark, ' '],
+                   [' ', ' ', ' ']]
+    assert ai._opposite_corner(board.representation()) == (2, 2)
+
+    board._rows = [[player_mark, ' ', ' '],
+                   [' ', ' ', ' '],
+                   [other_mark, ' ', other_mark]]
+    assert ai._opposite_corner(board.representation()) == (0, 2)
+
+    board._rows = [[player_mark, ' ', player_mark],
+                   [' ', ' ', ' '],
+                   [other_mark, ' ', other_mark]]
+    assert ai._opposite_corner(board.representation()) is None
+
+
 def other_player(player_mark):
     """
     Return the other player's mark, based on the given mark.
