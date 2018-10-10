@@ -201,13 +201,11 @@ class AI(Player):
 
         Opposite corner: If the opponent is in the corner, the player plays the opposite corner.
 
-
-
-        :param board:
+        :param board: current board
         :type board: BoardRepresentation
-        :return:
+        :return: choice according to Rule 6 if possible
+        :rtype: tuple
         """
-
         def empty_opposite_full(row1, column1, row2, column2):
             """
             :param row1: row of a corner
