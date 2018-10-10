@@ -241,9 +241,13 @@ class AI(Player):
         :return: choice according to Rule 7 if possible
         :rtype: tuple
         """
+        empty_corners = list()
         for corner in board.corners:
             if board.is_cell_empty(*corner):
-                return corner
+                empty_corners.append(corner)
+
+        if empty_corners:
+            return choice(empty_corners)
 
     def _empty_side(self):
         raise NotImplementedError
