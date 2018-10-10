@@ -229,8 +229,21 @@ class AI(Player):
         if empty_opposite_full(2, 0, 0, 2):
             return 0, 2
 
-    def _empty_corner(self):
-        raise NotImplementedError
+    @staticmethod
+    def _empty_corner(board):
+        """
+        Return the choice according to Rule 7: Empty corner.
+
+        Empty corner: The player plays in a corner square.
+
+        :param board: current board
+        :type board: BoardRepresentation
+        :return: choice according to Rule 7 if possible
+        :rtype: tuple
+        """
+        for corner in board.corners:
+            if board.is_cell_empty(*corner):
+                return corner
 
     def _empty_side(self):
         raise NotImplementedError
