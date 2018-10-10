@@ -249,8 +249,25 @@ class AI(Player):
         if empty_corners:
             return choice(empty_corners)
 
-    def _empty_side(self):
-        raise NotImplementedError
+    @staticmethod
+    def _empty_edge(board):
+        """
+        Return the choice according to Rule 8: Empty side.
+
+        Empty side: The player plays in a middle square on any of the 4 sides.
+
+        :param board: current board
+        :type board: BoardRepresentation
+        :return: choice according to Rule 8 if possible
+        :rtype: tuple
+        """
+        empty_edges = list()
+        for edge in board.edges:
+            if board.is_cell_empty(*edge):
+                empty_edges.append(edge)
+
+        if empty_edges:
+            return choice(empty_edges)
 
     def _first_turn(self, board):
         """
@@ -315,7 +332,7 @@ class AI(Player):
             return choice(choices)
 
     moves = (_first_turn, _second_turn, _win, _block, _fork, _block_fork,
-             _center, _opposite_corner, _empty_corner, _empty_side)
+             _center, _opposite_corner, _empty_corner, _empty_edge)
 
     @staticmethod
     def _number_of_empty_cells(board):
