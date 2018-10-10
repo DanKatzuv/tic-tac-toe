@@ -218,7 +218,7 @@ class AI(Player):
             :type column2: int
             :return: whether it is possible to make a choice according to Rule 6
             """
-            return board.is_cell_empty(row1, column1) == self._other_mark() and board.is_cell_empty(row2, column2)
+            return board.rows[row1][column1] == self._other_mark() and board.is_cell_empty(row2, column2)
 
         if empty_opposite_full(0, 0, 2, 2):
             return 2, 2
