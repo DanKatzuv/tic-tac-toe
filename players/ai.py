@@ -206,6 +206,7 @@ class AI(Player):
         :return: choice according to Rule 6 if possible
         :rtype: tuple
         """
+
         def empty_opposite_full(row1, column1, row2, column2):
             """
             :param row1: row of a corner
