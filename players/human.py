@@ -17,11 +17,12 @@ class Human(Player):
         """
 
         while True:
-            print(self._new_board(board))
+            new_board = self._new_board(board)
+            print(new_board)
             cell = self._get_user_input(board)
             row, column = cell[0], cell[1]
             if not board.is_cell_empty(row, column):
-                print(f'cell number {cell} is not empty')
+                print(f'cell number {row * 3 + column + 1} is not empty')
                 continue
 
             return row, column
@@ -37,8 +38,7 @@ class Human(Player):
         """
         new_board = self._new_board(board)
         while True:
-            number = input(
-                f'Player {self.mark}, enter a cell number between 1 and 9: ')
+            number = input(f'Player {self.mark}, enter a cell number between 1 and 9: ')
             try:
                 number = int(number)
             except ValueError:
