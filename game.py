@@ -48,5 +48,3 @@ class Game:
             return True
 
         return False
-
-# Removed code was last present in commit e8a9b493abfab7721696edb59aaa633f4e09c84b
