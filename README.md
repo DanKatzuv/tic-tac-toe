@@ -7,13 +7,14 @@ A Python implementation of a tic-tac-toe game with three types of players: human
 Download the game.exe file and run it. (Your operating system or browser might warn you from using the exe file, do not fear it 😀).
 You can also download the [zip folder](https://github.com/DanKatzuv/tic-tac-toe/archive/master.zip) of this repository
 and run the [main.py](main.py) file.
+If you make changes to the game and wish to build the exe file again, run `pyinstaller --onefile TicTacToe.py` in Cmd/PowerShell in the game directory.
 
 ### Prerequisites
-You will need Python 3.6 or above. You can download it [here](https://python.org/downloads). If you do not wish to download Python, you can
-run the game.exe file as mentioned above.
+You will need Python 3.6 or above. You can download it [here](https://python.org/downloads). If you do not wish to download Python, you can run the game.exe file as mentioned above.
+To make the exe file again, install [Pyinstaller](https://www.pyinstaller.org) with `pip install pyinstaller`.
 
 ### Tests
-To run the tests, you will need [pytest](https://pytest.org). You can install it via `pip install pytest`.
+To run the tests, you will need [pytest](https://pytest.org). You can install it with `pip install pytest`.
 
 
 ## Running the tests
