@@ -162,16 +162,15 @@ class AI(Player):
         combos = self._available_winning_combos(board)
         best = list()
         better = list()
-        for sequence in sequences:
-            for sequence1 in sequences:
-                if sequence != sequence1:
-                    intersection = set(sequence) & set(sequence1)
-                    for row, column in intersection:
-                        if board.is_cell_empty(row, column):
-                            if (row, column) in combos:
-                                best.append((row, column))
-                            else:
-                                better.append((row, column))
+        for sequence, sequence1 in product(sequences, sequences):
+            if sequence != sequence1:
+                intersection = set(sequence) & set(sequence1)
+                for row, column in intersection:
+                    if board.is_cell_empty(row, column):
+                        if (row, column) in combos:
+                            best.append((row, column))
+                        else:
+                            better.append((row, column))
         if len(best) > 0:
             return choice(best)
         if len(better) > 0:
