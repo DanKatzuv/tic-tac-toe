@@ -21,7 +21,7 @@ To run the tests, you will need [pytest](https://pytest.org). You can install it
 Install [pytest](https://pytest.org) via `pip install pytest`. To run the tests, download the [zip folder](https://github.com/DanKatzuv/tic-tac-toe/archive/master.zip) of this repository
 open Cmd or PowerShell, change to the directory of the game files, and run `pytest` in Cmd or PowerShell.
 
-There are tests for almost every class in this game. However, the most interesting ones are the tests for the [smart player class](tests/ai.py). They check every step the computer does.
+There are tests for almost every class in this game. However, the most interesting ones are the tests for the [smart player class](tests/test_ai.py). They check every step the computer does.
 For example, [this](https://github.com/DanKatzuv/tic-tac-toe/blob/master/tests/test_ai.py#L55-L77) method checks whether the computer fills a row of two:
 ```python
 @mark.parametrize('player_mark', (Game.FIRST_PLAYER_MARK, Game.SECOND_PLAYER_MARK))
